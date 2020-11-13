@@ -13,8 +13,7 @@ var defaultSchema = mongoose.Schema({
   price: String,
   down_payment_percentage: String,
   zip_code: Number,
-  home_insurance: Number,
-  other_fees: Number
+  home_insurance: Number
 });
 
 var rateSchema = mongoose.Schema({
@@ -66,24 +65,24 @@ function insertDefault(default, callback) {
   DefaultModel.create(default, callback));
 }
 
-function findRate(type, callback) {
-  RateModel.find({loan_type: type}, callback);
+function findAllRate(callback) {
+  RateModel.find({}, callback);
 }
 
 function insertRate(rateType, callback) {
   RateModel.create(default, callback);
 }
 
-function findPropertyTax(zip, callback) {
-  PropertyTaxModel.find({zip_code: zip}, callback)
+function findAllPropertyTax(callback) {
+  PropertyTaxModel.find({}, callback)
 }
 
 function insertPropertyTax(zipTax, callback) {
   PropertyTaxModel.create(zipTax, callback);
 }
 
-function findMortgageInsurance(down, callback) {
-  MortgageInsuranceModel.find({down_payment_percentage: down}, callback);
+function findAllMortgageInsurance(callback) {
+  MortgageInsuranceModel.find({}, callback);
 }
 
 function insertMortgageInsurance(downIns, callback) {
