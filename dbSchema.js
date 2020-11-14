@@ -1,18 +1,17 @@
 var mongoose = require('mongoose');
 
-var defaultSchema = mongoose.Schema({
-  id: {
+var listingSchema = mongoose.Schema({
+  listingid: {
     type: Number,
     unique: true
   },
-  default: {
-    type: String,
-    unique: true
-  },
+  price: Number
+});
+
+var defaultSchema = mongoose.Schema({
   loan_type: String,
-  price: String,
-  down_payment_percentage: String,
-  zip_code: Number,
+  down_payment_percentage: Number,
+  state: String,
   home_insurance: Number
 });
 
@@ -26,19 +25,19 @@ var rateSchema = mongoose.Schema({
     unique: true
   },
   interest_rate: Number
-})
+});
 
 var propertyTaxSchema = mongoose.Schema({
   id: {
     type: Number,
     unique: true
   },
-  zip_code: {
-    type Number,
+  state: {
+    type: String,
     unique: true
   },
   property_tax: Number
-})
+});
 
 var mortgageInsuranceSchema = mongoose.Schema({
   id: {
@@ -50,27 +49,36 @@ var mortgageInsuranceSchema = mongoose.Schema({
     unique: true
   },
   mortgage_insurance: Number
-})
+});
 
+var ListingModel = mongoose.model('Listing', listingSchema);
 var DefaultModel = mongoose.model('Default', defaultSchema);
 var RateModel = mongoose.model('Rate', rateSchema);
 var PropertyTaxModel = mongoose.model('PropertyTax', propertyTaxSchema);
 var MortgageInsuranceModel = mongoose.model('MortgageInsurance', mortgageInsuranceSchema);
 
+function findListing(id, callback) {
+  ListingModel.find({listingid: id}, callback);
+}
+
+function insertListings(listings, callback) {
+  ListingModel.create(listings, callback)
+}
+
 function findDefault(name, callback) {
   DefaultModel.find({default: name}, callback);
 }
 
-function insertDefault(default, callback) {
-  DefaultModel.create(default, callback));
+function insertDefault(settings, callback) {
+  DefaultModel.create(settings, callback);
 }
 
-function findAllRate(callback) {
+function findAllRates(callback) {
   RateModel.find({}, callback);
 }
 
-function insertRate(rateType, callback) {
-  RateModel.create(default, callback);
+function insertRates(rateType, callback) {
+  RateModel.create(rateType, callback);
 }
 
 function findAllPropertyTax(callback) {
@@ -89,12 +97,13 @@ function insertMortgageInsurance(downIns, callback) {
   MortgageInsuranceModel.create(downIns, callback);
 }
 
-
+exports.findListing = findListing;
+exports.insertListings = insertListings;
 exports.findDefault = findDefault;
 exports.insertDefault = insertDefault;
-exports.findRate = findRate;
-exports.insertRate = insertRate;
-exports.findPropertyTax = findPropertyTax;
+exports.findAllRates = findAllRates;
+exports.insertRates = insertRates;
+exports.findAllPropertyTax = findAllPropertyTax;
 exports.insertPropertyTax = insertPropertyTax;
-exports.findMortgageInsurance = findMortgageInsurance;
+exports.findAllMortgageInsurance = findAllMortgageInsurance;
 exports.insertMortgageInsurance = insertMortgageInsurance;
