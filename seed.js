@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var seed_data = require('./seed_data.js');
-var model = require('./dbSchema.js');
+var model = require('./db/models/dbSchema.js');
 
 mongoose.connect('mongodb://localhost/mortgagecalculator');
 

@@ -65,8 +65,8 @@ function insertListings(listings, callback) {
   ListingModel.create(listings, callback)
 }
 
-function findDefault(name, callback) {
-  DefaultModel.find({default: name}, callback);
+function findDefault(callback) {
+  DefaultModel.find({}, callback);
 }
 
 function insertDefault(settings, callback) {
