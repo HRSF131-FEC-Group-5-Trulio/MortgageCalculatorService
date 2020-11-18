@@ -26,14 +26,13 @@ var getSettings = (callback) => {
             } else {
               console.log('Property Tax Rates Received');
               settings.propertyTax = data;
-              // callback(null, settings);
               model.findAllMortgageInsurance((err, data) => {
                 if (err) {
                   console.log('Error Getting Mortgage Insurance Rates');
                 } else {
                   console.log('Mortgage Insurance Rates Received');
                   settings.mortgageInsurance = data;
-                  callback(null, data);
+                  callback(null, settings);
                 }
               })
             }

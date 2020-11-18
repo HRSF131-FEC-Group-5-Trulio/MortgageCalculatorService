@@ -11,7 +11,13 @@ var _Slider = _interopRequireDefault(require("./Slider.jsx"));
 
 var _Practice = _interopRequireDefault(require("./Practice.jsx"));
 
+var _Header = _interopRequireDefault(require("./Header.jsx"));
+
+var _Form = _interopRequireDefault(require("./Form.jsx"));
+
 var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _axios = _interopRequireDefault(require("axios"));
 
 var _jsxFileName = "/Users/harryclemente/dev/hackreactor/hrsf131/group5/MortgageCalculatorService/client/src/components/App.jsx";
 
@@ -65,28 +71,57 @@ var App = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      settings: []
+      settings: [],
+      listings: []
     };
     return _this;
   }
 
   _createClass(App, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      (0, _axios["default"])({
+        method: 'get',
+        url: 'http://localhost:3000/api/mortgagedata/settings',
+        responseType: 'json'
+      }).then(function (response) {
+        var dataObj = response.data;
+
+        _this2.setState({
+          settings: dataObj,
+          listings: _this2.state.listings
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var monthly = 5610;
       return /*#__PURE__*/_react["default"].createElement(Container, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 24,
+          lineNumber: 43,
           columnNumber: 7
         }
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25,
+          lineNumber: 44,
           columnNumber: 7
         }
-      }));
+      }, /*#__PURE__*/_react["default"].createElement(_Header["default"], {
+        price: monthly,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 45,
+          columnNumber: 9
+        }
+      })));
     }
   }]);
 
