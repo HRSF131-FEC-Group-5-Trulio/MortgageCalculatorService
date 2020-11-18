@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _jsxFileName = "/Users/harryclemente/dev/hackreactor/hrsf131/group5/MortgageCalculatorService/client/src/components/Slider.jsx";
+var _jsxFileName = "/Users/harryclemente/dev/hackreactor/hrsf131/group5/MortgageCalculatorService/client/src/components/LoanSelect.jsx";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -35,10 +35,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  .slider {\n  background: #f5f6f7;\n  height: 34px;\n  -webkit-appearance: none;\n  margin: 10px 0;\n  width: 100%;\n}\n.slider:focus {\n  outline: none;\n}\n.slider::-webkit-slider-runnable-track {\n  width: 100%;\n  height: 4px;\n  cursor: pointer;\n  animate: 0.2s;\n  box-shadow: 1px 1px 1px #FFFFFF;\n  border-radius: 1px;\n  border: 1px solid #FFFFFF;\n  ", "\n}\n.slider::-webkit-slider-thumb {\n\n  border: 3px solid #FFFFFF;\n  height: 19px;\n  width: 19px;\n  border-radius: 15px;\n  background: #007882;\n  cursor: pointer;\n  -webkit-appearance: none;\n  margin-top: -7px;\n}\n.slider:focus::-webkit-slider-runnable-track {\n  ", "\n}\n.slider::-moz-range-track {\n  width: 100%;\n  height: 6px;\n  cursor: pointer;\n  animate: 0.2s;\n  box-shadow: 1px 1px 1px #f5f6f7;\n  background: #007882;\n  border-radius: 1px;\n  border: 1px solid #f5f6f7;\n}\n.slider::-moz-range-thumb {\n  box-shadow: 3px 3px 3px #fff;\n  border: 2px solid #FFFFFF;\n  height: 23px;\n  width: 23px;\n  border-radius: 23px;\n  background: #007882;\n  cursor: pointer;\n}\n.slider::-ms-track {\n  width: 100%;\n  height: 6px;\n  cursor: pointer;\n  animate: 0.2s;\n  background: transparent;\n  border-color: transparent;\n  color: transparent;\n}\n.slider::-ms-fill-lower {\n  background: #007882;\n  border: 1px solid #f5f6f7;\n  border-radius: 2px;\n  box-shadow: 1px 1px 1px #f5f6f7;\n}\n.slider::-ms-fill-upper {\n  background: #007882;\n  border: 1px solid #f5f6f7;\n  border-radius: 2px;\n  box-shadow: 1px 1px 1px #f5f6f7;\n}\n.slider::-ms-thumb {\n  margin-top: 1px;\n  box-shadow: 3px 3px 3px #f5f6f7;\n  border: 2px solid #f5f6f7;\n  height: 23px;\n  width: 23px;\n  border-radius: 23px;\n  background: #007882;\n  cursor: pointer;\n}\n.slider:focus::-ms-fill-lower {\n  background: #007882;\n}\n.slider:focus::-ms-fill-upper {\n  background: #007882;\n}\n\n"]);
+  var data = _taggedTemplateLiteral(["\n\n  .selectContainer {\n    width: 100%;\n    display: inline-block;\n    -webkit-box-align: center;\n    align-items: center;\n    position: relative;\n    font-weight: bold;\n    border: 1px solid rgb(205, 209, 212);\n    border-radius: 8px;\n    background-color: rgb(255, 255, 255);\n    padding: 8px;\n    outline: none;\n    transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n  }\n\n  .insideSelect {\n    flex-direction: row;\n    -webkit-box-align: center;\n    align-items: center;\n    display: flex;\n  }\n\n  .label {\n    margin-left: 0px;\n    flex: 1 1 0px;\n    width: 100%;\n    margin: 0px 8px;\n  }\n\n  .select {\n    position: absolute;\n    opacity: 0;\n    width: 100%;\n    height: 100%;\n    top: 0px;\n    left: 0px;\n    right: 0px;\n    bottom: 0px;\n    cursor: pointer;\n    appearance: none;\n    font-size: 16px;\n    line-height: 1.5;\n  }\n\n  .option {\n    font-weight: normal;\n    display: block;\n    white-space: pre;\n    min-height: 1.2em;\n    padding: 0px 2px 1px;\n  }\n\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -49,79 +47,102 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var sliderStyles = function sliderStyles(props) {
-  return "\n    background: linear-gradient(to right, #007882 0%, #007882 ".concat(props.left, "%, #cdd1d4 ").concat(props.left, "%, #cdd1d4 100%);\n");
-};
+var LoanStyles = _styledComponents["default"].div(_templateObject());
 
-var Styles = _styledComponents["default"].div(_templateObject(), function (props) {
-  return sliderStyles(props);
-}, function (props) {
-  return sliderStyles(props);
-});
+var LoanSelect = /*#__PURE__*/function (_React$Component) {
+  _inherits(LoanSelect, _React$Component);
 
-var Slider = /*#__PURE__*/function (_React$Component) {
-  _inherits(Slider, _React$Component);
+  var _super = _createSuper(LoanSelect);
 
-  var _super = _createSuper(Slider);
-
-  function Slider(props) {
+  function LoanSelect(props) {
     var _this;
 
-    _classCallCheck(this, Slider);
+    _classCallCheck(this, LoanSelect);
 
     _this = _super.call(this, props);
-
-    _defineProperty(_assertThisInitialized(_this), "handleOnChange", function (event) {
-      _this.setState({
-        value: event.target.value
-      });
-    });
-
     _this.state = {
-      value: 70
+      loanType: '30-year fixed'
     };
-    _this.handleOnChange = _this.handleOnChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(Slider, [{
+  _createClass(LoanSelect, [{
     key: "render",
     value: function render() {
       return /*#__PURE__*/_react["default"].createElement("div", {
-        style: {
-          position: 'relative'
-        },
+        className: "selectContainer",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 119,
+          lineNumber: 71,
           columnNumber: 7
         }
-      }, /*#__PURE__*/_react["default"].createElement(Styles, {
-        color: this.props.color,
-        left: this.state.value,
+      }, /*#__PURE__*/_react["default"].createElement("select", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 120,
-          columnNumber: 7
-        }
-      }, /*#__PURE__*/_react["default"].createElement("input", {
-        type: "range",
-        min: 0,
-        value: this.state.value,
-        max: 100,
-        className: "slider",
-        onChange: this.handleOnChange,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 122,
+          lineNumber: 77,
           columnNumber: 9
         }
-      })));
+      }, /*#__PURE__*/_react["default"].createElement("option", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 78,
+          columnNumber: 11
+        }
+      }, "30-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 79,
+          columnNumber: 11
+        }
+      }, "20-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 80,
+          columnNumber: 11
+        }
+      }, "15-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 81,
+          columnNumber: 11
+        }
+      }, "10-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 82,
+          columnNumber: 11
+        }
+      }, "FHA 30-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 83,
+          columnNumber: 11
+        }
+      }, "FHA 15-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 84,
+          columnNumber: 11
+        }
+      }, "VA 30-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 85,
+          columnNumber: 11
+        }
+      }, "VA 15-year fixed")), /*#__PURE__*/_react["default"].createElement("span", {
+        className: "custom-array",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 87,
+          columnNumber: 9
+        }
+      }));
     }
   }]);
 
-  return Slider;
+  return LoanSelect;
 }(_react["default"].Component);
 
-var _default = Slider;
+var _default = LoanSelect;
 exports["default"] = _default;

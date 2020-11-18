@@ -43,6 +43,26 @@ var getSettings = (callback) => {
   });
 }
 
+var getListing = (id, callback) => {
+  model.findListing(id, (err, data) => {
+    if (err) {
+      console.log("Error getting listing");
+    } else {
+      console.log("Listing Received");
+      callback(null, data);
+    }
+  });
+}
+
 
 
 exports.getSettings = getSettings;
+exports.getListing = getListing;
+
+// getListing(20, (err, data) => {
+//   if (err) {
+//     console.log('error: ', err);
+//   } else {
+//     console.log('success: ', data);
+//   }
+// });

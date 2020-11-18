@@ -5,8 +5,16 @@ var model = require('./db/models/dbSchema.js');
 mongoose.connect('mongodb://localhost/mortgagecalculator');
 
 var seedDb = function(data) {
+  let listings = [];
+  for (let i = 1; i <= 100; i++) {
+    let listingPrice = (Math.floor(Math.random() * 5000) + 101) * 1000;
+    listings.push({
+      listingid: i,
+      price: listingPrice
+    });
+  }
 
-  model.insertListings(data.listings, (err) => {
+  model.insertListings(listings, (err) => {
     if (err) {
       console.log(err);
     } else {

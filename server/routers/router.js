@@ -11,4 +11,6 @@ router.route('/settings')
     })
   });
 
+  router.route('/find/')
+
   module.exports = router;

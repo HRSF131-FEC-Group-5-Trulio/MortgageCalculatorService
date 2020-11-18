@@ -19,6 +19,10 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
+var _HomePrice = _interopRequireDefault(require("./HomePrice.jsx"));
+
+var _PracticeGrid = _interopRequireDefault(require("./PracticeGrid.jsx"));
+
 var _jsxFileName = "/Users/harryclemente/dev/hackreactor/hrsf131/group5/MortgageCalculatorService/client/src/components/App.jsx";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -46,7 +50,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  .container {\n    background: white;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  .container {\n    background: white;\n    width: 100%;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -72,7 +76,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       settings: [],
-      listings: []
+      listings: {}
     };
     return _this;
   }
@@ -104,21 +108,22 @@ var App = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/_react["default"].createElement(Container, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43,
+          lineNumber: 46,
           columnNumber: 7
         }
       }, /*#__PURE__*/_react["default"].createElement("div", {
         className: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 44,
+          lineNumber: 47,
           columnNumber: 7
         }
-      }, /*#__PURE__*/_react["default"].createElement(_Header["default"], {
-        price: monthly,
+      }, /*#__PURE__*/_react["default"].createElement(_Form["default"], {
+        price: 1500000,
+        settings: this.state.settings,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45,
+          lineNumber: 51,
           columnNumber: 9
         }
       })));

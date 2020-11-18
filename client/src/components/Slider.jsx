@@ -18,7 +18,7 @@ const Styles = styled.div`
 }
 .slider::-webkit-slider-runnable-track {
   width: 100%;
-  height: 6px;
+  height: 4px;
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #FFFFFF;
@@ -28,14 +28,14 @@ const Styles = styled.div`
 }
 .slider::-webkit-slider-thumb {
 
-  border: 4px solid #FFFFFF;
-  height: 23px;
-  width: 23px;
-  border-radius: 23px;
+  border: 3px solid #FFFFFF;
+  height: 19px;
+  width: 19px;
+  border-radius: 15px;
   background: #007882;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -10px;
+  margin-top: -7px;
 }
 .slider:focus::-webkit-slider-runnable-track {
   ${props => sliderStyles(props)}

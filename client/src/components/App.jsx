@@ -5,11 +5,14 @@ import Header from './Header.jsx'
 import Form from './Form.jsx'
 import styled from 'styled-components'
 import axios from 'axios'
+import HomePrice from './HomePrice.jsx'
+import PracticeGrid from './PracticeGrid.jsx'
 
 
 const Container = styled.div`
   .container {
     background: white;
+    width: 100%;
   }
 `
 
@@ -18,7 +21,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       settings: [],
-      listings: []
+      listings: {}
     }
   }
 
@@ -42,8 +45,11 @@ class App extends React.Component {
 
       <Container>
       <div className="container">
-        <Header price={monthly}/>
-        {/* <Form price={1500000} settings={this.state.settings}/> */}
+        {/* <PracticeGrid/> */}
+        {/* <HomePrice/> */}
+        {/* <Header price={monthly}/> */}
+        <Form price={1500000} settings={this.state.settings}/>
+        {/* {console.log(this.state.settings)} */}
       </div>
       </Container>
     )

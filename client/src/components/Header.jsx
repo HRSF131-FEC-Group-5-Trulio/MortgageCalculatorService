@@ -7,9 +7,10 @@ const Styles = styled.div`
     font-family: TruliaSans, system, -apple-system, Roboto, "Segoe UI Bold", Arial, sans-serif;
     outline: none;
     color: #3b4144;
+    letter-spacing: -0.1px;
     display: block;
     box-sizing: border-box;
-    letter-spacing: -0.1px;
+
   }
 
   .a1 {

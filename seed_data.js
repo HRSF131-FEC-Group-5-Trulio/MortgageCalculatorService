@@ -43,22 +43,22 @@ module.exports.interest_rates = [
   },
   {
     id: 5,
-    loan_type: 'fha-30-year-fixed',
+    loan_type: 'FHA-30-year-fixed',
     interest_rate: 2.3
   },
   {
     id: 6,
-    loan_type: 'fha-15-year-fixed',
+    loan_type: 'FHA-15-year-fixed',
     interest_rate: 2.25
   },
   {
     id: 7,
-    loan_type: 'va-30-year-fixed',
+    loan_type: 'VA-30-year-fixed',
     interest_rate: 2.39
   },
   {
     id: 8,
-    loan_type: 'va-15-year-fixed',
+    loan_type: 'VA-15-year-fixed',
     interest_rate: 2.3
   }
 ];
