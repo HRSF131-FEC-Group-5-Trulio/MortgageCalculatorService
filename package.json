@@ -9,7 +9,7 @@
   },
   "scripts": {
     "seed": "node seed.js",
-    "start": "webpack --mode=development",
+    "start": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
     "dev": "webpack-dev-server",
     "serve": "webpack serve",
@@ -22,7 +22,8 @@
     "mongoose": "^5.10.14",
     "nodemon": "^2.0.6",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
