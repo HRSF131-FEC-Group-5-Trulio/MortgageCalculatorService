@@ -75,10 +75,12 @@ var Slider = /*#__PURE__*/function (_React$Component) {
       _this.setState({
         value: event.target.value
       });
+
+      _this.props.change(event);
     });
 
     _this.state = {
-      value: 70
+      value: _this.props.value
     };
     _this.handleOnChange = _this.handleOnChange.bind(_assertThisInitialized(_this));
     return _this;
@@ -87,33 +89,44 @@ var Slider = /*#__PURE__*/function (_React$Component) {
   _createClass(Slider, [{
     key: "render",
     value: function render() {
+      var TruliaMax = 1300000;
+      var sliderMax = this.props.max;
+
+      if (this.state.value > 100) {
+        sliderMax = TruliaMax;
+
+        if (this.state.value > TruliaMax) {
+          sliderMax += TruliaMax + 5000000;
+        }
+      }
+
       return /*#__PURE__*/_react["default"].createElement("div", {
         style: {
           position: 'relative'
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 119,
+          lineNumber: 127,
           columnNumber: 7
         }
       }, /*#__PURE__*/_react["default"].createElement(Styles, {
-        color: this.props.color,
-        left: this.state.value,
+        left: this.state.value / this.props.max * 100,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 120,
+          lineNumber: 128,
           columnNumber: 7
         }
       }, /*#__PURE__*/_react["default"].createElement("input", {
         type: "range",
         min: 0,
         value: this.state.value,
-        max: 100,
+        max: sliderMax,
         className: "slider",
         onChange: this.handleOnChange,
+        step: this.props.step,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 122,
+          lineNumber: 130,
           columnNumber: 9
         }
       })));

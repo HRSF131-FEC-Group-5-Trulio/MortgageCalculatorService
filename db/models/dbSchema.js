@@ -24,6 +24,7 @@ var rateSchema = mongoose.Schema({
     type: String,
     unique: true
   },
+  months: Number,
   interest_rate: Number
 });
 

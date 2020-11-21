@@ -103,23 +103,31 @@ class Slider extends React.Component  {
   constructor (props) {
     super (props);
     this.state = {
-      value: 70
+      value: this.props.value
     };
     this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   handleOnChange = (event) => {
     this.setState({value: event.target.value});
+    this.props.change(event);
   }
 
   render () {
-
+    let TruliaMax = 1300000;
+    let sliderMax = this.props.max;
+    if (this.state.value > 100) {
+      sliderMax = TruliaMax;
+      if (this.state.value > TruliaMax) {
+        sliderMax += TruliaMax + 5000000;
+      }
+    }
 
     return (
       <div style={{position: 'relative'}}>
-      <Styles color={this.props.color} left={this.state.value}>
+      <Styles left={(this.state.value / this.props.max) * 100 }>
 
-        <input type="range" min={0} value={this.state.value} max={100}  className="slider" onChange={this.handleOnChange} />
+        <input type="range" min={0} value={this.state.value} max={sliderMax}  className="slider" onChange={this.handleOnChange} step={this.props.step}/>
       </Styles>
       </div>
     )

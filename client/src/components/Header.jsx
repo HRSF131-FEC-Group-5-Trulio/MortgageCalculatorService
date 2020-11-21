@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Styles = styled.div`
+const HeaderStyles = styled.div`
 
-  .all {
     font-family: TruliaSans, system, -apple-system, Roboto, "Segoe UI Bold", Arial, sans-serif;
     outline: none;
     color: #3b4144;
@@ -11,32 +10,31 @@ const Styles = styled.div`
     display: block;
     box-sizing: border-box;
 
-  }
+  `;
 
-  .a1 {
+const H1 = styled.p`
     font-size: 20px;
     line-height: 1.2;
     font-weight: bold;
-  }
-  .a2 {
+`;
+const H2 = styled.div`
     font-size: 16px;
     line-height: 1.5;
     font-weight: bold;
-  }
-  .a3 {
+`;
+const H3 = styled.div`
     font-size: 16px;
     line-height: 1.5;
-  }
-
 `;
 
 const Header = (props) => {
+  let monthly = Math.floor(props.monthly);
   return (
-    <Styles>
-      <div className="all a1">Affordability</div>
-      <div className="all a2">Calculate your monthly mortgage payments</div>
-  <div className="all a3">Your est. payment: ${props.price}/month</div>
-    </Styles>
+    <HeaderStyles>
+      <H1>Affordability</H1>
+      <H2>Calculate your monthly mortgage payments</H2>
+  <H3>Your est. payment: ${monthly}/month</H3>
+    </HeaderStyles>
 
   )
 }

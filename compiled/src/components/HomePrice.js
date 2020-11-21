@@ -15,8 +15,18 @@ var _jsxFileName = "/Users/harryclemente/dev/hackreactor/hrsf131/group5/Mortgage
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n    background-color: #f5f6f7;\n    font-weight: bold;\n    font-size: 16px;\n    line-height: 1.5;\n    flex: 1 1 0%;\n    width: 100%;\n    display: flex;\n    -webkit-box-pack: justify;\n    justify-content: space-between;\n    -webkit-box-align: center;\n    align-items: center;\n    margin-bottom: 16px;\n    min-height: 48px;\n\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\n  .container {\n\n\n  }\n\n  .homeSpace {\n    background-color: #f5f6f7;\n    font-weight: bold;\n    font-size: 16px;\n    line-height: 1.5;\n  }\n\n  .fonts {\n    font-weight: bold;\n    font-size: 16px;\n    line-height: 1.5;\n  }\n\n  .input {\n    /* float: right; */\n    /* clear: both; */\n    width: 112;px\n    border-radius: 8px;\n    border: 1px solid rgb(205, 209, 212);\n    padding: 8px;\n    font-size: 16px;\n    line-height: 1.5;\n    display: inline-block;\n    outline: none;\n    transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n    font-family: TruliaSans, system, -apple-system, Roboto, \"Segoe UI Bold\", Arial, sans-serif;\n  }\n\n"]);
+  var data = _taggedTemplateLiteral(["\n      width: 112px;\n      border-radius: 8px;\n      border: 1px solid rgb(205, 209, 212);\n      padding: 8px;\n      font-size: 16px;\n      line-height: 1.5;\n      display: inline-block;\n      outline: none;\n      transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n      font-family: TruliaSans, system, -apple-system, Roboto, \"Segoe UI Bold\", Arial, sans-serif;\n      margin-left: auto;\n\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -27,45 +37,34 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var HomeStyles = _styledComponents["default"].div(_templateObject());
+var InputStyle = _styledComponents["default"].input(_templateObject());
+
+var HomeStyles = _styledComponents["default"].div(_templateObject2());
 
 var HomePrice = function HomePrice(props) {
   return /*#__PURE__*/_react["default"].createElement(HomeStyles, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45,
-      columnNumber: 5
-    }
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    className: "container",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 46,
-      columnNumber: 5
-    }
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    className: "homeSpace",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47,
-      columnNumber: 7
-    }
-  }, /*#__PURE__*/_react["default"].createElement("label", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 48,
+      lineNumber: 41,
       columnNumber: 9
     }
-  }, "Home Price"), /*#__PURE__*/_react["default"].createElement("input", {
+  }, "Home Price", /*#__PURE__*/_react["default"].createElement(InputStyle, {
     type: "text",
-    className: "input",
+    value: props.price,
+    onChange: props.priceChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51,
-      columnNumber: 9
+      lineNumber: 43,
+      columnNumber: 11
     }
-  }))));
+  }));
 };
 
-var _default = HomePrice;
+var _default = HomePrice; // var myObj = {
+//   style: "currency",
+//   currency: "USD"
+// }
+// let n = this.state.value;
+// let view = n.toLocaleString("en-US", myObj);
+
 exports["default"] = _default;

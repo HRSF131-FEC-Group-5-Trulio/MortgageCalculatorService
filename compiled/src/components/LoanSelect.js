@@ -35,8 +35,58 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n    font-weight: normal;\n    display: block;\n    white-space: pre;\n    min-height: 1.2em;\n    padding: 0px 2px 1px;\n"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n    appearance: none;\n    position: absolute;\n    opacity: 0;\n    width: 100%;\n    height: 100%;\n    top: 0px;\n    left: 0px;\n    right: 0px;\n    bottom: 0px;\n    cursor: pointer;\n    font-size: 16px;\n    line-height: 1.5;\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n    display: inline-block;\n    font-size: 0px;\n    width: 16px !important;\n    height: 24px !important;\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n    margin-left: 0px;\n    flex: 1 1 0px;\n    width: 100%;\n    margin: 0px 8px;\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n    flex-direction: row;\n    -webkit-box-align: center;\n    align-items: center;\n    display: flex;\n\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\n  .selectContainer {\n    width: 100%;\n    display: inline-block;\n    -webkit-box-align: center;\n    align-items: center;\n    position: relative;\n    font-weight: bold;\n    border: 1px solid rgb(205, 209, 212);\n    border-radius: 8px;\n    background-color: rgb(255, 255, 255);\n    padding: 8px;\n    outline: none;\n    transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n  }\n\n  .insideSelect {\n    flex-direction: row;\n    -webkit-box-align: center;\n    align-items: center;\n    display: flex;\n  }\n\n  .label {\n    margin-left: 0px;\n    flex: 1 1 0px;\n    width: 100%;\n    margin: 0px 8px;\n  }\n\n  .select {\n    position: absolute;\n    opacity: 0;\n    width: 100%;\n    height: 100%;\n    top: 0px;\n    left: 0px;\n    right: 0px;\n    bottom: 0px;\n    cursor: pointer;\n    appearance: none;\n    font-size: 16px;\n    line-height: 1.5;\n  }\n\n  .option {\n    font-weight: normal;\n    display: block;\n    white-space: pre;\n    min-height: 1.2em;\n    padding: 0px 2px 1px;\n  }\n\n"]);
+  var data = _taggedTemplateLiteral(["\n    width: 100%;\n    display: inline-block;\n    -webkit-box-align: center;\n    align-items: center;\n    position: relative;\n    font-weight: bold;\n    border: 1px solid rgb(205, 209, 212);\n    border-radius: 8px;\n    background-color: rgb(255, 255, 255);\n    padding: 8px;\n    outline: none;\n    transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -47,7 +97,17 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var LoanStyles = _styledComponents["default"].div(_templateObject());
+var SelectContainer = _styledComponents["default"].div(_templateObject());
+
+var InsideSelect = _styledComponents["default"].div(_templateObject2());
+
+var Label = _styledComponents["default"].div(_templateObject3());
+
+var Arrow = _styledComponents["default"].div(_templateObject4());
+
+var Select = _styledComponents["default"].select(_templateObject5());
+
+var Option = _styledComponents["default"].option(_templateObject6());
 
 var LoanSelect = /*#__PURE__*/function (_React$Component) {
   _inherits(LoanSelect, _React$Component);
@@ -63,81 +123,128 @@ var LoanSelect = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       loanType: '30-year fixed'
     };
+    _this.handleSelect = _this.handleSelect.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(LoanSelect, [{
+    key: "handleSelect",
+    value: function handleSelect(event) {
+      var newType = event.target.value;
+      this.props.loanChange(newType);
+      this.setState({
+        loanType: newType
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react["default"].createElement("div", {
-        className: "selectContainer",
+      return /*#__PURE__*/_react["default"].createElement(SelectContainer, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 71,
+          lineNumber: 91,
           columnNumber: 7
         }
-      }, /*#__PURE__*/_react["default"].createElement("select", {
+      }, /*#__PURE__*/_react["default"].createElement(InsideSelect, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77,
+          lineNumber: 92,
           columnNumber: 9
         }
-      }, /*#__PURE__*/_react["default"].createElement("option", {
+      }, /*#__PURE__*/_react["default"].createElement(Label, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 78,
+          lineNumber: 93,
           columnNumber: 11
         }
-      }, "30-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+      }, this.state.loanType), /*#__PURE__*/_react["default"].createElement(Arrow, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 79,
+          lineNumber: 96,
           columnNumber: 11
         }
-      }, "20-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+      }, /*#__PURE__*/_react["default"].createElement("svg", {
+        className: "svg",
+        viewBox: "0 0 32 32",
+        xmlns: "http://www.w3.org/2000/svg",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 80,
-          columnNumber: 11
+          lineNumber: 97,
+          columnNumber: 13
         }
-      }, "15-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+      }, /*#__PURE__*/_react["default"].createElement("path", {
+        d: "M15.961 18.183l7.056-7.147 1.893 1.868-8.951 9.068-8.927-9.069 1.896-1.866z",
+        fill: "#869099",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 81,
-          columnNumber: 11
+          lineNumber: 97,
+          columnNumber: 89
         }
-      }, "10-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
+      })))), /*#__PURE__*/_react["default"].createElement(Select, {
+        value: this.state.loanType,
+        onChange: this.handleSelect,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 82,
-          columnNumber: 11
-        }
-      }, "FHA 30-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 83,
-          columnNumber: 11
-        }
-      }, "FHA 15-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 84,
-          columnNumber: 11
-        }
-      }, "VA 30-year fixed"), /*#__PURE__*/_react["default"].createElement("option", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 85,
-          columnNumber: 11
-        }
-      }, "VA 15-year fixed")), /*#__PURE__*/_react["default"].createElement("span", {
-        className: "custom-array",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 87,
+          lineNumber: 100,
           columnNumber: 9
         }
-      }));
+      }, /*#__PURE__*/_react["default"].createElement(Option, {
+        value: "30-year-fixed",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 101,
+          columnNumber: 11
+        }
+      }, "30-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
+        value: "20-year-fixed",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 102,
+          columnNumber: 11
+        }
+      }, "20-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
+        value: "15-year-fixed",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 103,
+          columnNumber: 11
+        }
+      }, "15-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
+        value: "10-year-fixed",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 104,
+          columnNumber: 11
+        }
+      }, "10-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
+        value: "FHA-30-year-fixed",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 105,
+          columnNumber: 11
+        }
+      }, "FHA 30-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
+        value: "FHA-15-year-fixed",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 106,
+          columnNumber: 11
+        }
+      }, "FHA 15-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
+        value: "VA-30-year-fixed",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 107,
+          columnNumber: 11
+        }
+      }, "VA 30-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
+        value: "VA-15-year-fixed",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 108,
+          columnNumber: 11
+        }
+      }, "VA 15-year fixed")));
     }
   }]);
 

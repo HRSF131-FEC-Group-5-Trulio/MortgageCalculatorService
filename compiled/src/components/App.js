@@ -23,6 +23,8 @@ var _HomePrice = _interopRequireDefault(require("./HomePrice.jsx"));
 
 var _PracticeGrid = _interopRequireDefault(require("./PracticeGrid.jsx"));
 
+var _Breakdown = _interopRequireDefault(require("./Breakdown.jsx"));
+
 var _jsxFileName = "/Users/harryclemente/dev/hackreactor/hrsf131/group5/MortgageCalculatorService/client/src/components/App.jsx";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -50,7 +52,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  .container {\n    background: white;\n    width: 100%;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n    background: white;\n    width: 1055px;\n    margin: auto;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -76,8 +78,21 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       settings: [],
-      listings: {}
+      isLoading: true,
+      price: 900000,
+      rate: 2.83,
+      down: 300000,
+      downPercent: 15,
+      loanType: '30-year fixed',
+      monthly: [{
+        monthly_payment: 1
+      }]
     };
+    _this.priceChange = _this.priceChange.bind(_assertThisInitialized(_this));
+    _this.interestChange = _this.interestChange.bind(_assertThisInitialized(_this));
+    _this.downChange = _this.downChange.bind(_assertThisInitialized(_this));
+    _this.downPercentChange = _this.downPercentChange.bind(_assertThisInitialized(_this));
+    _this.loanChange = _this.loanChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -92,41 +107,180 @@ var App = /*#__PURE__*/function (_React$Component) {
         responseType: 'json'
       }).then(function (response) {
         var dataObj = response.data;
+        console.log(dataObj);
+        var newState = Object.assign({}, newState);
+        newState.settings = dataObj;
+        newState.isLoading = false;
 
-        _this2.setState({
-          settings: dataObj,
-          listings: _this2.state.listings
-        });
+        _this2.setState(newState);
+      }).then(function () {
+        var newState = Object.assign({}, _this2.state);
+
+        var month = _this2.calculateMonthly(newState);
+
+        newState.monthly = month;
+
+        _this2.setState(newState);
       })["catch"](function (error) {
         console.log(error);
       });
     }
   }, {
+    key: "priceChange",
+    value: function priceChange(event) {
+      var newPrice = event.target.value;
+      var newDown = this.state.downPercent / 100 * newPrice;
+      var newState = Object.assign({}, this.state);
+      newState.down = newDown;
+      newState.price = newPrice;
+      var month = this.calculateMonthly(newState);
+      newState.monthly = month;
+      this.setState(newState);
+    }
+  }, {
+    key: "interestChange",
+    value: function interestChange(event) {
+      var newRate = event.target.value;
+      var newState = Object.assign({}, this.state);
+      newState.rate = newRate;
+      var month = this.calculateMonthly(newState);
+      newState.monthly = month;
+      this.setState(newState);
+    }
+  }, {
+    key: "downChange",
+    value: function downChange(event) {
+      var newDown = event.target.value;
+      var newDownPercent = newDown / this.state.price * 100;
+      var newState = Object.assign({}, this.state);
+      newState.down = newDown;
+      newState.downPercent = newDownPercent;
+      var month = this.calculateMonthly(newState);
+      newState.monthly = month;
+      this.setState(newState);
+    }
+  }, {
+    key: "downPercentChange",
+    value: function downPercentChange(event) {
+      var newDownPercent = event.target.value;
+      var newDown = newDownPercent / 100 * this.state.price;
+      var newState = Object.assign({}, this.state);
+      newState.down = newDown;
+      newState.downPercent = newDownPercent;
+      var month = this.calculateMonthly(newState);
+      newState.monthly = month;
+      console;
+      this.setState(newState);
+    }
+  }, {
+    key: "loanChange",
+    value: function loanChange(event) {
+      var newLoan = event;
+      var newInterest = 2.83;
+
+      for (var i = 0; i < this.state.settings.rates.length; i++) {
+        if (newLoan === this.state.settings.rates[i].loan_type) {
+          newInterest = this.state.settings.rates[i].interest_rate;
+        }
+      }
+
+      var newState = Object.assign({}, this.state);
+      newState.rate = newInterest;
+      newState.loanType = newLoan;
+      var month = this.calculateMonthly(newState);
+      newState.monthly = month;
+      this.setState(newState);
+    }
+  }, {
+    key: "calculateMonthly",
+    value: function calculateMonthly(stateInput) {
+      var principle = stateInput.price;
+      var mortgageIns = stateInput.settings.mortgageInsurance;
+      var propertyTax = stateInput.settings.propertyTax[0].property_tax * principle;
+      var rates = stateInput.settings.rates;
+      var interestMonthly = stateInput.rate / 100 / 12;
+      var months = 360;
+
+      for (var i = 0; i < rates.length; i++) {
+        if (stateInput.loanType === rates[i].loan_type) {
+          months = rates[i].months;
+        }
+      }
+
+      var principleAndInterest = (principle - stateInput.down) * (interestMonthly / (1 - Math.pow(1 + interestMonthly, -months)));
+      var mortgageInsMonthly = 0;
+      var homeIns = stateInput.settings["default"][0].home_insurance;
+
+      if (stateInput.loanType !== "VA-30-year fixed" && stateInput.loanType !== "VA-15-year fixed") {
+        for (var _i = 0; _i < mortgageIns.length; _i++) {
+          if (stateInput.downPercent == mortgageIns[_i].down_payment_percentage) {
+            mortgageInsMonthly = mortgageIns[_i].mortgage_insurance * principle;
+          }
+        }
+      }
+
+      var monthlyPayment = principleAndInterest + propertyTax + homeIns + mortgageInsMonthly;
+      return [{
+        monthly_payment: monthlyPayment,
+        principle_interest: principleAndInterest,
+        property_tax: propertyTax,
+        home_ins: homeIns,
+        mortgage_insurance: mortgageInsMonthly
+      }];
+    }
+  }, {
     key: "render",
     value: function render() {
-      var monthly = 5610;
+      if (this.state.isLoading) {
+        return /*#__PURE__*/_react["default"].createElement("div", {
+          className: "App",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 165,
+            columnNumber: 14
+          }
+        }, "Loading...");
+      }
+
       return /*#__PURE__*/_react["default"].createElement(Container, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46,
+          lineNumber: 171,
           columnNumber: 7
         }
-      }, /*#__PURE__*/_react["default"].createElement("div", {
-        className: "container",
+      }, /*#__PURE__*/_react["default"].createElement(_Header["default"], {
+        monthly: this.state.monthly[0].monthly_payment,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 47,
-          columnNumber: 7
-        }
-      }, /*#__PURE__*/_react["default"].createElement(_Form["default"], {
-        price: 1500000,
-        settings: this.state.settings,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 51,
+          lineNumber: 173,
           columnNumber: 9
         }
-      })));
+      }), /*#__PURE__*/_react["default"].createElement(_Form["default"], {
+        state: this.state,
+        loanChange: this.loanChange,
+        price: this.state.price,
+        down: this.state.down,
+        rate: this.state.rate,
+        downPercent: this.state.downPercent,
+        settings: this.state.settings,
+        loanType: this.state.loanType,
+        priceChange: this.priceChange,
+        interestChange: this.interestChange,
+        downChange: this.downChange,
+        downPercentChange: this.downPercentChange,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 174,
+          columnNumber: 9
+        }
+      }), /*#__PURE__*/_react["default"].createElement(_Breakdown["default"], {
+        monthly: this.state.monthly,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 188,
+          columnNumber: 9
+        }
+      }));
     }
   }]);
 
