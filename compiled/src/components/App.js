@@ -82,7 +82,7 @@ var App = /*#__PURE__*/function (_React$Component) {
       price: 900000,
       rate: 2.83,
       down: 300000,
-      downPercent: 15,
+      downPercent: 20,
       loanType: '30-year fixed',
       monthly: [{
         monthly_payment: 1
@@ -103,7 +103,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
       (0, _axios["default"])({
         method: 'get',
-        url: 'http://localhost:3000/api/mortgagedata/settings',
+        url: '/api/listings/settings',
         responseType: 'json'
       }).then(function (response) {
         var dataObj = response.data;
@@ -113,6 +113,20 @@ var App = /*#__PURE__*/function (_React$Component) {
         newState.isLoading = false;
 
         _this2.setState(newState);
+      }).then(function () {
+        var listing_id = Math.floor(Math.random() * 100) + 1;
+        (0, _axios["default"])({
+          method: 'get',
+          url: "/api/listings/".concat(listing_id),
+          responseType: 'json'
+        }).then(function (response) {
+          var price = {
+            target: {}
+          };
+          price.target.value = response.data[0].price;
+
+          _this2.priceChange(price);
+        });
       }).then(function () {
         var newState = Object.assign({}, _this2.state);
 
@@ -236,7 +250,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           className: "App",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 165,
+            lineNumber: 177,
             columnNumber: 14
           }
         }, "Loading...");
@@ -245,14 +259,14 @@ var App = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/_react["default"].createElement(Container, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 171,
+          lineNumber: 183,
           columnNumber: 7
         }
       }, /*#__PURE__*/_react["default"].createElement(_Header["default"], {
         monthly: this.state.monthly[0].monthly_payment,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 173,
+          lineNumber: 185,
           columnNumber: 9
         }
       }), /*#__PURE__*/_react["default"].createElement(_Form["default"], {
@@ -270,14 +284,14 @@ var App = /*#__PURE__*/function (_React$Component) {
         downPercentChange: this.downPercentChange,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 174,
+          lineNumber: 186,
           columnNumber: 9
         }
       }), /*#__PURE__*/_react["default"].createElement(_Breakdown["default"], {
         monthly: this.state.monthly,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 188,
+          lineNumber: 200,
           columnNumber: 9
         }
       }));

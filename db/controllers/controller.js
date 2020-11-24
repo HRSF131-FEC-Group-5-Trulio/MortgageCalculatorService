@@ -11,24 +11,28 @@ var getSettings = (callback) => {
   model.findDefault((err, data) => {
     if (err) {
       console.log('Error Getting Default Settings');
+      callback(err, null);
     } else {
       console.log('Default  Settings Received');
       settings.default = data;
       model.findAllRates((err, data) => {
         if (err) {
           console.log('Error Getting Interest Rates');
+          callback(err, null);
         } else {
           console.log('Interest Rates Received');
           settings.rates = data;
           model.findAllPropertyTax((err, data) => {
             if (err) {
               console.log('Error Getting Property Taxes');
+              callback(err, null);
             } else {
               console.log('Property Tax Rates Received');
               settings.propertyTax = data;
               model.findAllMortgageInsurance((err, data) => {
                 if (err) {
                   console.log('Error Getting Mortgage Insurance Rates');
+                  callback(err, null);
                 } else {
                   console.log('Mortgage Insurance Rates Received');
                   settings.mortgageInsurance = data;

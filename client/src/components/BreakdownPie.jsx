@@ -38,7 +38,7 @@ const PrincipalAndInterest = styled.circle`
     fill: transparent;
     stroke: rgb(5, 34, 134);
     stroke-width: 3.8;
-    stroke-dasharray: 78.6392, 21.3608;
+    stroke-dasharray: ${props => props.princIntX}, ${props => props.princIntY};
     stroke-dashoffset: 25;
 `;
 
@@ -49,8 +49,8 @@ const PropertyTax = styled.circle`
     fill: transparent;
     stroke: rgb(0, 173, 187);
     stroke-width: 3.8;
-    stroke-dasharray: 12.613, 87.387;
-    stroke-dashoffset: 46.3608;
+    stroke-dasharray: ${props => props.propTaxX}, ${props => props.propTaxY};
+    stroke-dashoffset: ${props => props.propTaxOffset};
 `;
 
 const HomeInsurance = styled.circle`
@@ -60,8 +60,8 @@ const HomeInsurance = styled.circle`
     fill: transparent;
     stroke: rgb(194, 213, 0);
     stroke-width: 3.8;
-    stroke-dasharray: 1.6953, 98.3047;
-    stroke-dashoffset: 33.7477;
+    stroke-dasharray: ${props => props.homeInsX}, ${props => props.homeInsY};
+    stroke-dashoffset: ${props => props.homeInsOffset};
 `;
 const MortgageInsOther = styled.circle`
     cx: 18;
@@ -70,8 +70,8 @@ const MortgageInsOther = styled.circle`
     fill: transparent;
     stroke: rgb(206, 182, 255);
     stroke-width: 3.8;
-    stroke-dasharray: 7.05244, 92.9476;
-    stroke-dashoffset: 32.0524;
+    stroke-dasharray: ${props => props.mortInsX}, ${props => props.mortInsY};
+    stroke-dashoffset: ${props => props.mortInsOffset};
 `;
 const MonthlyTotalBox = styled.div`
     position: absolute;
@@ -103,6 +103,17 @@ const MonthLabel = styled.div`
 
 const BreakdownPie = (props) => {
   let monthly = Math.floor(props.total);
+  let princIntX = props.princInt / monthly * 100;
+  let princIntY = 100 - princIntX;
+  let propTaxX = props.propertyTax / monthly * 100;
+  let propTaxY = 100 - propTaxX;
+  let propTaxOffset = 25 + princIntY;
+  let homeInsX = props.homeIns / monthly * 100;
+  let homeInsY = 100 - homeInsX;
+  let homeInsOffset = propTaxOffset - propTaxX;
+  let mortInsX = props.mortIns / monthly * 100;
+  let mortInsY = 100 - mortInsX;
+  let mortInsOffset = 25 + mortInsX;
   return (
     <OuterPieBox>
         <InnerPieBox>
@@ -110,17 +121,23 @@ const BreakdownPie = (props) => {
             <ViewBox viewBox="0 0 36 36">
               <MonthlyTotalCircle role="presentation"/>
               <PrincipalAndInterest
-              total={props.total}
-              princInt={props.princInt}/>
+              princIntX={princIntX}
+              princIntY={princIntY}/>
               <PropertyTax
-              total={props.total}
-              propertyTax={props.propertyTax}/>
+              propTaxX={propTaxX}
+              propTaxY={propTaxY}
+              propTaxOffset={propTaxOffset}
+              />
               <HomeInsurance
-              total={props.total}
-              homeIns/>
+              homeInsX={homeInsX}
+              homeInsY={homeInsY}
+              homeInsOffset={homeInsOffset}
+              />
               <MortgageInsOther
-              total={props.total}
-              mortIns={props.mortIns}/>
+              mortInsX={mortInsX}
+              mortInsY={mortInsY}
+              mortInsOffset={mortInsOffset}
+              />
             </ViewBox>
           </InnerPieBox2>
           <MonthlyTotalBox>

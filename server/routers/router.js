@@ -11,9 +11,9 @@ router.route('/settings')
     })
   });
 
-  router.route('/find/:id')
+  router.route('/:listing_id')
     .get((req, res) => {
-      controller.getListing(req.params.id, (err, data) => {
+      controller.getListing(req.params.listing_id, (err, data) => {
         if (err) {
           console.log('Error finding listing')
           res.sendStatus(404);

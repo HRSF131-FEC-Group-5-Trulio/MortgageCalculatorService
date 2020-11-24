@@ -19,13 +19,14 @@ const Container = styled.div`
 class App extends React.Component {
   constructor (props) {
     super(props);
+    // this.id = props.id; // _Thomas
     this.state = {
       settings: [],
       isLoading: true,
       price: 900000,
       rate: 2.83,
       down: 300000,
-      downPercent: 15,
+      downPercent: 20,
       loanType: '30-year fixed',
       monthly: [{monthly_payment: 1}]
     }
@@ -39,7 +40,7 @@ class App extends React.Component {
   componentDidMount () {
     axios({
       method: 'get',
-      url: 'http://localhost:3000/api/mortgagedata/settings',
+      url: 'http://localhost:3004/:id/api/MortgageCalculator/settings',
       responseType: 'json'
     })
     .then((response) => {
@@ -49,7 +50,20 @@ class App extends React.Component {
       newState.settings = dataObj;
       newState.isLoading = false;
       this.setState(newState);
-
+    })
+    .then(() => {
+      // let listing_id = Math.floor(Math.random() * 100) + 1;
+      // console.log(this.props.id);
+      axios({
+        method: 'get',
+        url: `http://localhost:3004/:id/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
+        responseType: 'json'
+      })
+      .then((response) => {
+        let price = {target: {}};
+        price.target.value = response.data[0].price;
+        this.priceChange(price);
+      })
     })
     .then(() => {
       let newState = Object.assign({}, this.state);

@@ -5,4 +5,7 @@ import reactDOM from 'react-dom';
 import Slider from './components/Slider.jsx'
 import App from './components/App.jsx'
 
-reactDOM.render(<App/>, document.getElementById('app'));
+// to get the :id from the url _Thomas
+let id = Number(window.location.pathname.slice(1, -1));
+
+reactDOM.render(<App id={id}/>, document.getElementById('service4')); // make id a prop to <App />
