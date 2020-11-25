@@ -29,11 +29,13 @@ const H3 = styled.div`
 
 const Header = (props) => {
   let monthly = Math.floor(props.monthly);
+  let convertUSD = monthly.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+  let removeDecimals = convertUSD.slice(0, convertUSD.length - 3);
   return (
     <HeaderStyles>
       <H1>Affordability</H1>
       <H2>Calculate your monthly mortgage payments</H2>
-  <H3>Your est. payment: ${monthly}/month</H3>
+  <H3>Your est. payment: {removeDecimals}/month</H3>
     </HeaderStyles>
 
   )

@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Slider from './Slider.jsx'
+import CurrencyInput from 'react-currency-input-field';
 
-const InputStyle = styled.input`
+const InputStyle = styled(CurrencyInput)`
       width: 112px;
       border-radius: 8px;
       border: 1px solid rgb(205, 209, 212);
@@ -40,7 +41,11 @@ const HomePrice = (props) => {
 
         <HomeStyles>
             Home Price
-          <InputStyle type="text" value={props.price} onChange={props.priceChange}/>
+          <InputStyle
+          type="text"
+          prefix="$"
+          value={props.price}
+          onChange={props.priceChange}/>
         </HomeStyles>
     )
 

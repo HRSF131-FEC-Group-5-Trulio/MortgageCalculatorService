@@ -114,6 +114,8 @@ const BreakdownPie = (props) => {
   let mortInsX = props.mortIns / monthly * 100;
   let mortInsY = 100 - mortInsX;
   let mortInsOffset = 25 + mortInsX;
+  let convertUSD = monthly.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+  let removeDecimals = convertUSD.slice(0, convertUSD.length - 3);
   return (
     <OuterPieBox>
         <InnerPieBox>
@@ -143,7 +145,7 @@ const BreakdownPie = (props) => {
           <MonthlyTotalBox>
             <MonthlyTotalInner>
               <MonthlyTotalValue>
-                ${monthly}
+                {removeDecimals}
               </MonthlyTotalValue>
               <MonthLabel>
                 /month

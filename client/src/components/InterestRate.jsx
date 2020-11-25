@@ -40,7 +40,10 @@ const InterestRate = (props) => {
       return (
         <HomeStyles>
             Interest Rate
-          <InputStyle type="number" value={props.rate} onChange={props.interestChange}/>
+          <InputStyle
+          type="text"
+          value={props.rate + "%"}
+          onChange={props.interestChange}/>
         </HomeStyles>
     )
 }

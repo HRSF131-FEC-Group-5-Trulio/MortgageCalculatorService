@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import Slider from './Slider.jsx'
+import CurrencyInput from 'react-currency-input-field';
+// import NumericInput from 'react-numeric-input';
 
-const InputStyle = styled.input`
+
+const InputStyle = styled(CurrencyInput)`
     width: 100px;
     border-width: 1px 0px 1px 1px;
     border-top-style: solid;
@@ -23,6 +26,7 @@ const InputStyle = styled.input`
     border-right-color: initial;
     margin-left: auto;
 
+
 `;
 
 const InputStyle2 = styled.input`
@@ -35,6 +39,7 @@ const InputStyle2 = styled.input`
     outline: none;
     transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;
     border-radius: 0px 8px 8px 0px;
+
 `;
 
 const HomeStyles = styled.div`
@@ -54,12 +59,28 @@ const HomeStyles = styled.div`
 
 `;
 
+// const Percent = styled.span`
+//     border: 1px inset #fff;
+
+// `;
+
 const DownPayment = (props) => {
+
       return (
         <HomeStyles>
             Down Payment
-          <InputStyle type="text" value={Math.floor(props.down)} onChange={props.downChange}/>
-          <InputStyle2 type="text" value={props.downPercent} onChange={props.downPercentChange}/>
+          <InputStyle
+          type="text"
+          prefix="$"
+          value={Math.floor(props.down)}
+          onChange={props.downChange}/>
+          {/* <Percent> */}
+          <InputStyle2
+          type="text"
+          value={props.downPercent + "%"}
+          onChange={props.downPercentChange}/>
+          {/* % */}
+          {/* </Percent> */}
         </HomeStyles>
     )
 }

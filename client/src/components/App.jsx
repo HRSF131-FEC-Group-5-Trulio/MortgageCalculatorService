@@ -88,6 +88,9 @@ class App extends React.Component {
 
   interestChange (event) {
     let newRate = event.target.value;
+    newRate = newRate.split('%')[0]
+    newRate = Number(newRate);
+
     let newState = Object.assign({}, this.state);
     newState.rate = newRate;
     let month = this.calculateMonthly(newState);
@@ -110,6 +113,8 @@ class App extends React.Component {
 
   downPercentChange (event) {
     let newDownPercent = event.target.value;
+    newDownPercent = newDownPercent.split('%')[0]
+    newDownPercent = Number(newDownPercent);
     let newDown = (newDownPercent / 100) * this.state.price;
     let newState = Object.assign({}, this.state);
     newState.down = newDown;
