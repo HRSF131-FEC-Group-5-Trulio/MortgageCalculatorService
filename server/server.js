@@ -9,7 +9,7 @@ var app = express();
 
 mongoose.connect('mongodb://localhost/mortgagecalculator');
 
-app.use('/:id/api/MortgageCalculator', cors())
+app.use('/api/MortgageCalculator', cors())
 
 app.use(bodyParser.json());
 
