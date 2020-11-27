@@ -49,8 +49,8 @@ var InterestRate = function InterestRate(props) {
       columnNumber: 9
     }
   }, "Interest Rate", /*#__PURE__*/_react["default"].createElement(InputStyle, {
-    type: "number",
-    value: props.rate,
+    type: "text",
+    value: props.rate + "%",
     onChange: props.interestChange,
     __source: {
       fileName: _jsxFileName,

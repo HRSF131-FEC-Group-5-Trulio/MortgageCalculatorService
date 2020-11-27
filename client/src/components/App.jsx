@@ -40,7 +40,7 @@ class App extends React.Component {
   componentDidMount () {
     axios({
       method: 'get',
-      url: 'http://localhost:3004/:id/api/MortgageCalculator/settings',
+      url: '/api/MortgageCalculator/settings',
       responseType: 'json'
     })
     .then((response) => {
@@ -56,7 +56,7 @@ class App extends React.Component {
       // console.log(this.props.id);
       axios({
         method: 'get',
-        url: `http://localhost:3004/:id/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
+        url: `/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
         responseType: 'json'
       })
       .then((response) => {

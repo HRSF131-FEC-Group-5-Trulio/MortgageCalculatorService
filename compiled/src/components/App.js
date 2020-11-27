@@ -75,7 +75,8 @@ var App = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, App);
 
-    _this = _super.call(this, props);
+    _this = _super.call(this, props); // this.id = props.id; // _Thomas
+
     _this.state = {
       settings: [],
       isLoading: true,
@@ -103,7 +104,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
       (0, _axios["default"])({
         method: 'get',
-        url: '/api/listings/settings',
+        url: '/api/MortgageCalculator/settings',
         responseType: 'json'
       }).then(function (response) {
         var dataObj = response.data;
@@ -114,10 +115,12 @@ var App = /*#__PURE__*/function (_React$Component) {
 
         _this2.setState(newState);
       }).then(function () {
-        var listing_id = Math.floor(Math.random() * 100) + 1;
+        // let listing_id = Math.floor(Math.random() * 100) + 1;
+        // console.log(this.props.id);
         (0, _axios["default"])({
           method: 'get',
-          url: "/api/listings/".concat(listing_id),
+          url: "/api/MortgageCalculator/".concat(_this2.props.id),
+          // refactor to /api/MortgageCalculator/:id/<whatever>
           responseType: 'json'
         }).then(function (response) {
           var price = {
@@ -155,6 +158,8 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "interestChange",
     value: function interestChange(event) {
       var newRate = event.target.value;
+      newRate = newRate.split('%')[0];
+      newRate = Number(newRate);
       var newState = Object.assign({}, this.state);
       newState.rate = newRate;
       var month = this.calculateMonthly(newState);
@@ -177,6 +182,8 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "downPercentChange",
     value: function downPercentChange(event) {
       var newDownPercent = event.target.value;
+      newDownPercent = newDownPercent.split('%')[0];
+      newDownPercent = Number(newDownPercent);
       var newDown = newDownPercent / 100 * this.state.price;
       var newState = Object.assign({}, this.state);
       newState.down = newDown;
@@ -250,7 +257,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           className: "App",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 177,
+            lineNumber: 184,
             columnNumber: 14
           }
         }, "Loading...");
@@ -259,14 +266,14 @@ var App = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/_react["default"].createElement(Container, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 183,
+          lineNumber: 190,
           columnNumber: 7
         }
       }, /*#__PURE__*/_react["default"].createElement(_Header["default"], {
         monthly: this.state.monthly[0].monthly_payment,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 185,
+          lineNumber: 192,
           columnNumber: 9
         }
       }), /*#__PURE__*/_react["default"].createElement(_Form["default"], {
@@ -284,14 +291,14 @@ var App = /*#__PURE__*/function (_React$Component) {
         downPercentChange: this.downPercentChange,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 186,
+          lineNumber: 193,
           columnNumber: 9
         }
       }), /*#__PURE__*/_react["default"].createElement(_Breakdown["default"], {
         monthly: this.state.monthly,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 200,
+          lineNumber: 207,
           columnNumber: 9
         }
       }));

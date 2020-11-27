@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.use("/:id", express.static(__dirname + '/../client/dist'));
 
-app.use('/:id/api/MortgageCalculator', router); // possible change to /api/MortgageCalculator/:id/ _Thomas
+app.use('/api/MortgageCalculator', router); // possible change to /api/MortgageCalculator/:id/ _Thomas
 
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);

@@ -65,31 +65,36 @@ var H3 = _styledComponents["default"].div(_templateObject4());
 
 var Header = function Header(props) {
   var monthly = Math.floor(props.monthly);
+  var convertUSD = monthly.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
+  var removeDecimals = convertUSD.slice(0, convertUSD.length - 3);
   return /*#__PURE__*/_react["default"].createElement(HeaderStyles, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33,
+      lineNumber: 35,
       columnNumber: 5
     }
   }, /*#__PURE__*/_react["default"].createElement(H1, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34,
+      lineNumber: 36,
       columnNumber: 7
     }
   }, "Affordability"), /*#__PURE__*/_react["default"].createElement(H2, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35,
+      lineNumber: 37,
       columnNumber: 7
     }
   }, "Calculate your monthly mortgage payments"), /*#__PURE__*/_react["default"].createElement(H3, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36,
+      lineNumber: 38,
       columnNumber: 3
     }
-  }, "Your est. payment: $", monthly, "/month"));
+  }, "Your est. payment: ", removeDecimals, "/month"));
 };
 
 var _default = Header;

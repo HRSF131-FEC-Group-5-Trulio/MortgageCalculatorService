@@ -54,7 +54,7 @@ function _templateObject10() {
 }
 
 function _templateObject9() {
-  var data = _taggedTemplateLiteral(["\n    cx: 18;\n    cy: 18;\n    r: 15.9155;\n    fill: transparent;\n    stroke: rgb(206, 182, 255);\n    stroke-width: 3.8;\n    stroke-dasharray: 7.05244, 92.9476;\n    stroke-dashoffset: 32.0524;\n"]);
+  var data = _taggedTemplateLiteral(["\n    cx: 18;\n    cy: 18;\n    r: 15.9155;\n    fill: transparent;\n    stroke: rgb(206, 182, 255);\n    stroke-width: 3.8;\n    stroke-dasharray: ", ", ", ";\n    stroke-dashoffset: ", ";\n"]);
 
   _templateObject9 = function _templateObject9() {
     return data;
@@ -64,7 +64,7 @@ function _templateObject9() {
 }
 
 function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n    cx: 18;\n    cy: 18;\n    r: 15.9155;\n    fill: transparent;\n    stroke: rgb(194, 213, 0);\n    stroke-width: 3.8;\n    stroke-dasharray: 1.6953, 98.3047;\n    stroke-dashoffset: 33.7477;\n"]);
+  var data = _taggedTemplateLiteral(["\n    cx: 18;\n    cy: 18;\n    r: 15.9155;\n    fill: transparent;\n    stroke: rgb(194, 213, 0);\n    stroke-width: 3.8;\n    stroke-dasharray: ", ", ", ";\n    stroke-dashoffset: ", ";\n"]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -74,7 +74,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n    cx: 18;\n    cy: 18;\n    r: 15.9155;\n    fill: transparent;\n    stroke: rgb(0, 173, 187);\n    stroke-width: 3.8;\n    stroke-dasharray: 12.613, 87.387;\n    stroke-dashoffset: 46.3608;\n"]);
+  var data = _taggedTemplateLiteral(["\n    cx: 18;\n    cy: 18;\n    r: 15.9155;\n    fill: transparent;\n    stroke: rgb(0, 173, 187);\n    stroke-width: 3.8;\n    stroke-dasharray: ", ", ", ";\n    stroke-dashoffset: ", ";\n"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -84,7 +84,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n    cx: 18;\n    cy: 18;\n    r: 15.9155;\n    fill: transparent;\n    stroke: rgb(5, 34, 134);\n    stroke-width: 3.8;\n    stroke-dasharray: 78.6392, 21.3608;\n    stroke-dashoffset: 25;\n"]);
+  var data = _taggedTemplateLiteral(["\n    cx: 18;\n    cy: 18;\n    r: 15.9155;\n    fill: transparent;\n    stroke: rgb(5, 34, 134);\n    stroke-width: 3.8;\n    stroke-dasharray: ", ", ", ";\n    stroke-dashoffset: 25;\n"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -155,13 +155,35 @@ var ViewBox = _styledComponents["default"].svg(_templateObject4());
 
 var MonthlyTotalCircle = _styledComponents["default"].circle(_templateObject5());
 
-var PrincipalAndInterest = _styledComponents["default"].circle(_templateObject6());
+var PrincipalAndInterest = _styledComponents["default"].circle(_templateObject6(), function (props) {
+  return props.princIntX;
+}, function (props) {
+  return props.princIntY;
+});
 
-var PropertyTax = _styledComponents["default"].circle(_templateObject7());
+var PropertyTax = _styledComponents["default"].circle(_templateObject7(), function (props) {
+  return props.propTaxX;
+}, function (props) {
+  return props.propTaxY;
+}, function (props) {
+  return props.propTaxOffset;
+});
 
-var HomeInsurance = _styledComponents["default"].circle(_templateObject8());
+var HomeInsurance = _styledComponents["default"].circle(_templateObject8(), function (props) {
+  return props.homeInsX;
+}, function (props) {
+  return props.homeInsY;
+}, function (props) {
+  return props.homeInsOffset;
+});
 
-var MortgageInsOther = _styledComponents["default"].circle(_templateObject9());
+var MortgageInsOther = _styledComponents["default"].circle(_templateObject9(), function (props) {
+  return props.mortInsX;
+}, function (props) {
+  return props.mortInsY;
+}, function (props) {
+  return props.mortInsOffset;
+});
 
 var MonthlyTotalBox = _styledComponents["default"].div(_templateObject10());
 
@@ -173,92 +195,111 @@ var MonthLabel = _styledComponents["default"].div(_templateObject13());
 
 var BreakdownPie = function BreakdownPie(props) {
   var monthly = Math.floor(props.total);
+  var princIntX = props.princInt / monthly * 100;
+  var princIntY = 100 - princIntX;
+  var propTaxX = props.propertyTax / monthly * 100;
+  var propTaxY = 100 - propTaxX;
+  var propTaxOffset = 25 + princIntY;
+  var homeInsX = props.homeIns / monthly * 100;
+  var homeInsY = 100 - homeInsX;
+  var homeInsOffset = propTaxOffset - propTaxX;
+  var mortInsX = props.mortIns / monthly * 100;
+  var mortInsY = 100 - mortInsX;
+  var mortInsOffset = 25 + mortInsX;
+  var convertUSD = monthly.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
+  var removeDecimals = convertUSD.slice(0, convertUSD.length - 3);
   return /*#__PURE__*/_react["default"].createElement(OuterPieBox, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 107,
+      lineNumber: 120,
       columnNumber: 5
     }
   }, /*#__PURE__*/_react["default"].createElement(InnerPieBox, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 108,
+      lineNumber: 121,
       columnNumber: 9
     }
   }, /*#__PURE__*/_react["default"].createElement(InnerPieBox2, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 109,
+      lineNumber: 122,
       columnNumber: 11
     }
   }, /*#__PURE__*/_react["default"].createElement(ViewBox, {
     viewBox: "0 0 36 36",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 110,
+      lineNumber: 123,
       columnNumber: 13
     }
   }, /*#__PURE__*/_react["default"].createElement(MonthlyTotalCircle, {
     role: "presentation",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 111,
+      lineNumber: 124,
       columnNumber: 15
     }
   }), /*#__PURE__*/_react["default"].createElement(PrincipalAndInterest, {
-    total: props.total,
-    princInt: props.princInt,
+    princIntX: princIntX,
+    princIntY: princIntY,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 112,
+      lineNumber: 125,
       columnNumber: 15
     }
   }), /*#__PURE__*/_react["default"].createElement(PropertyTax, {
-    total: props.total,
-    propertyTax: props.propertyTax,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 115,
-      columnNumber: 15
-    }
-  }), /*#__PURE__*/_react["default"].createElement(HomeInsurance, {
-    total: props.total,
-    homeIns: true,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 118,
-      columnNumber: 15
-    }
-  }), /*#__PURE__*/_react["default"].createElement(MortgageInsOther, {
-    total: props.total,
-    mortIns: props.mortIns,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 121,
-      columnNumber: 15
-    }
-  }))), /*#__PURE__*/_react["default"].createElement(MonthlyTotalBox, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 126,
-      columnNumber: 11
-    }
-  }, /*#__PURE__*/_react["default"].createElement(MonthlyTotalInner, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 127,
-      columnNumber: 13
-    }
-  }, /*#__PURE__*/_react["default"].createElement(MonthlyTotalValue, {
+    propTaxX: propTaxX,
+    propTaxY: propTaxY,
+    propTaxOffset: propTaxOffset,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 128,
       columnNumber: 15
     }
-  }, "$", monthly), /*#__PURE__*/_react["default"].createElement(MonthLabel, {
+  }), /*#__PURE__*/_react["default"].createElement(HomeInsurance, {
+    homeInsX: homeInsX,
+    homeInsY: homeInsY,
+    homeInsOffset: homeInsOffset,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 131,
+      lineNumber: 133,
+      columnNumber: 15
+    }
+  }), /*#__PURE__*/_react["default"].createElement(MortgageInsOther, {
+    mortInsX: mortInsX,
+    mortInsY: mortInsY,
+    mortInsOffset: mortInsOffset,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 138,
+      columnNumber: 15
+    }
+  }))), /*#__PURE__*/_react["default"].createElement(MonthlyTotalBox, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 145,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/_react["default"].createElement(MonthlyTotalInner, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 146,
+      columnNumber: 13
+    }
+  }, /*#__PURE__*/_react["default"].createElement(MonthlyTotalValue, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147,
+      columnNumber: 15
+    }
+  }, removeDecimals), /*#__PURE__*/_react["default"].createElement(MonthLabel, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 150,
       columnNumber: 15
     }
   }, "/month")))));
