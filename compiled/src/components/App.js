@@ -104,7 +104,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
       (0, _axios["default"])({
         method: 'get',
-        url: '/api/MortgageCalculator/settings',
+        url: 'http://18.191.145.212:3004/api/MortgageCalculator/settings',
         responseType: 'json'
       }).then(function (response) {
         var dataObj = response.data;
@@ -119,7 +119,7 @@ var App = /*#__PURE__*/function (_React$Component) {
         // console.log(this.props.id);
         (0, _axios["default"])({
           method: 'get',
-          url: "/api/MortgageCalculator/".concat(_this2.props.id),
+          url: "http://18.191.145.212:3004/api/MortgageCalculator/".concat(_this2.props.id),
           // refactor to /api/MortgageCalculator/:id/<whatever>
           responseType: 'json'
         }).then(function (response) {
