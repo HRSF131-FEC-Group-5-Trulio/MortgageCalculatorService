@@ -27,6 +27,7 @@
     "react-currency-input-field": "^2.7.0",
     "react-dom": "^17.0.1",
     "react-enhanced-numeric-input": "^1.1.2",
+    "react-number-format": "^4.4.1",
     "react-numeric-input": "^2.2.3",
     "styled-components": "^5.2.1"
   },

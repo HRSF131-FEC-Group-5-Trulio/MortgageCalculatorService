@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Slider from './Slider.jsx'
+import NumberFormat from 'react-number-format';
 
-const InputStyle = styled.input`
+const InputStyle = styled(NumberFormat)`
 
       width: 75px;
       border-radius: 8px;
@@ -42,7 +43,9 @@ const InterestRate = (props) => {
             Interest Rate
           <InputStyle
           type="text"
-          value={props.rate + "%"}
+          suffix="%"
+          value={props.rate}
+          // value={props.rate + "%"}
           onChange={props.interestChange}/>
         </HomeStyles>
     )

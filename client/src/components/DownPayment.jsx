@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Slider from './Slider.jsx'
 import CurrencyInput from 'react-currency-input-field';
+import NumberFormat from 'react-number-format';
 // import NumericInput from 'react-numeric-input';
 
 
@@ -29,7 +30,7 @@ const InputStyle = styled(CurrencyInput)`
 
 `;
 
-const InputStyle2 = styled.input`
+const InputStyle2 = styled(NumberFormat)`
     border: 1px solid rgb(205, 209, 212);
     padding: 8px;
     font-size: 16px;
@@ -77,7 +78,9 @@ const DownPayment = (props) => {
           {/* <Percent> */}
           <InputStyle2
           type="text"
-          value={props.downPercent + "%"}
+          value={props.downPercent}
+          suffix="%"
+        //   value={props.downPercent + "%"}
           onChange={props.downPercentChange}/>
           {/* % */}
           {/* </Percent> */}

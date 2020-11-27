@@ -11,6 +11,8 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _Slider = _interopRequireDefault(require("./Slider.jsx"));
 
+var _reactNumberFormat = _interopRequireDefault(require("react-number-format"));
+
 var _jsxFileName = "/Users/harryclemente/dev/hackreactor/hrsf131/group5/MortgageCalculatorService/client/src/components/InterestRate.jsx";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -37,7 +39,7 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var InputStyle = _styledComponents["default"].input(_templateObject());
+var InputStyle = (0, _styledComponents["default"])(_reactNumberFormat["default"])(_templateObject());
 
 var HomeStyles = _styledComponents["default"].div(_templateObject2());
 
@@ -45,16 +47,18 @@ var InterestRate = function InterestRate(props) {
   return /*#__PURE__*/_react["default"].createElement(HomeStyles, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 41,
+      lineNumber: 42,
       columnNumber: 9
     }
   }, "Interest Rate", /*#__PURE__*/_react["default"].createElement(InputStyle, {
     type: "text",
-    value: props.rate + "%",
+    suffix: "%",
+    value: props.rate // value={props.rate + "%"}
+    ,
     onChange: props.interestChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43,
+      lineNumber: 44,
       columnNumber: 11
     }
   }));

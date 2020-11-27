@@ -13,6 +13,8 @@ var _Slider = _interopRequireDefault(require("./Slider.jsx"));
 
 var _reactCurrencyInputField = _interopRequireDefault(require("react-currency-input-field"));
 
+var _reactNumberFormat = _interopRequireDefault(require("react-number-format"));
+
 var _jsxFileName = "/Users/harryclemente/dev/hackreactor/hrsf131/group5/MortgageCalculatorService/client/src/components/DownPayment.jsx";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -51,8 +53,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 // import NumericInput from 'react-numeric-input';
 var InputStyle = (0, _styledComponents["default"])(_reactCurrencyInputField["default"])(_templateObject());
-
-var InputStyle2 = _styledComponents["default"].input(_templateObject2());
+var InputStyle2 = (0, _styledComponents["default"])(_reactNumberFormat["default"])(_templateObject2());
 
 var HomeStyles = _styledComponents["default"].div(_templateObject3()); // const Percent = styled.span`
 //     border: 1px inset #fff;
@@ -63,7 +64,7 @@ var DownPayment = function DownPayment(props) {
   return /*#__PURE__*/_react["default"].createElement(HomeStyles, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70,
+      lineNumber: 71,
       columnNumber: 9
     }
   }, "Down Payment", /*#__PURE__*/_react["default"].createElement(InputStyle, {
@@ -73,16 +74,18 @@ var DownPayment = function DownPayment(props) {
     onChange: props.downChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72,
+      lineNumber: 73,
       columnNumber: 11
     }
   }), /*#__PURE__*/_react["default"].createElement(InputStyle2, {
     type: "text",
-    value: props.downPercent + "%",
+    value: props.downPercent,
+    suffix: "%" //   value={props.downPercent + "%"}
+    ,
     onChange: props.downPercentChange,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78,
+      lineNumber: 79,
       columnNumber: 11
     }
   }));
