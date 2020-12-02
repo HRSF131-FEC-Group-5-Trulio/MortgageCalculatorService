@@ -57,10 +57,3 @@ const HomePrice = (props) => {
 }
 
 export default HomePrice;
-
-      // var myObj = {
-      //   style: "currency",
-      //   currency: "USD"
-      // }
-      // let n = this.state.value;
-      // let view = n.toLocaleString("en-US", myObj);

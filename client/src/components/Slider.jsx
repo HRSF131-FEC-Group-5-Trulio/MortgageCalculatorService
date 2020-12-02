@@ -114,12 +114,13 @@ class Slider extends React.Component  {
   }
 
   render () {
-    var TruliaMax = 1300000;
+    // var TruliaMax = this.state.value * 1.2;
     var sliderMax = this.props.max;
     if (this.state.value > 100) {
-      sliderMax = TruliaMax;
-      if (this.state.value > TruliaMax) {
-        sliderMax = TruliaMax + 5000000;
+      if (this.state.value < 1500000)
+      sliderMax = 1500000;
+      if (this.state.value >= 1250000) {
+        sliderMax = this.state.value * 1.2;
       }
     }
 
