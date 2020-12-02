@@ -42,8 +42,8 @@ class App extends React.Component {
   componentDidMount () {
     axios({
       method: 'get',
-      url: `http://localhost:3004/api/MortgageCalculator/settings`,
-      // url: 'http://18.191.145.212:3004/api/MortgageCalculator/settings',
+      // url: `http://localhost:3004/api/MortgageCalculator/settings`,
+      url: 'http://18.191.145.212:3004/api/MortgageCalculator/settings',
       responseType: 'json'
     })
     .then((response) => {
@@ -59,8 +59,8 @@ class App extends React.Component {
       // console.log(this.props.id);
       axios({
         method: 'get',
-        url: `http://localhost:3004/api/MortgageCalculator/${this.props.id}`,
-        // url: `http://18.191.145.212:3004/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
+        // url: `http://localhost:3004/api/MortgageCalculator/${this.props.id}`,
+        url: `http://18.191.145.212:3004/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
         responseType: 'json'
       })
       .then((response) => {
