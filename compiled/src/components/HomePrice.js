@@ -13,6 +13,8 @@ var _Slider = _interopRequireDefault(require("./Slider.jsx"));
 
 var _reactCurrencyInputField = _interopRequireDefault(require("react-currency-input-field"));
 
+var _reactNumberFormat = _interopRequireDefault(require("react-number-format"));
+
 var _jsxFileName = "/Users/harryclemente/dev/hackreactor/hrsf131/group5/MortgageCalculatorService/client/src/components/HomePrice.jsx";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -28,7 +30,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n      width: 112px;\n      border-radius: 8px;\n      border: 1px solid rgb(205, 209, 212);\n      padding: 8px;\n      font-size: 16px;\n      line-height: 1.5;\n      display: inline-block;\n      outline: none;\n      transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n      font-family: TruliaSans, system, -apple-system, Roboto, \"Segoe UI Bold\", Arial, sans-serif;\n      margin-left: auto;\n\n"]);
+  var data = _taggedTemplateLiteral(["\n      width: 112px;\n      border-radius: 8px;\n      /* border: 1px solid rgb(205, 209, 212); */\n      border: ", ";\n      padding: 8px;\n      font-size: 16px;\n      line-height: 1.5;\n      display: inline-block;\n      outline: none;\n      transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n      font-family: TruliaSans, system, -apple-system, Roboto, \"Segoe UI Bold\", Arial, sans-serif;\n      margin-left: auto;\n\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -39,7 +41,9 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var InputStyle = (0, _styledComponents["default"])(_reactCurrencyInputField["default"])(_templateObject());
+var InputStyle = (0, _styledComponents["default"])(_reactCurrencyInputField["default"])(_templateObject(), function (props) {
+  return props.selected === 'price' ? '3px solid #007882' : '1px solid rgb(205, 209, 212)';
+});
 
 var HomeStyles = _styledComponents["default"].div(_templateObject2());
 
@@ -47,7 +51,7 @@ var HomePrice = function HomePrice(props) {
   return /*#__PURE__*/_react["default"].createElement(HomeStyles, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 42,
+      lineNumber: 44,
       columnNumber: 9
     }
   }, "Home Price", /*#__PURE__*/_react["default"].createElement(InputStyle, {
@@ -55,9 +59,13 @@ var HomePrice = function HomePrice(props) {
     prefix: "$",
     value: props.price,
     onChange: props.priceChange,
+    selected: props.selected,
+    onClick: function onClick() {
+      return props.updateSelected('price');
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44,
+      lineNumber: 46,
       columnNumber: 11
     }
   }));

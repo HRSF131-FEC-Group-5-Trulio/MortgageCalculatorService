@@ -9,7 +9,7 @@ const SelectContainer = styled.div`
     align-items: center;
     position: relative;
     font-weight: bold;
-    border: 1px solid rgb(205, 209, 212);
+    border: ${props=> (props.selected === 'loan') ? '3px solid #007882' : '1px solid rgb(205, 209, 212)'};
     border-radius: 8px;
     background-color: rgb(255, 255, 255);
     padding: 8px;
@@ -88,7 +88,10 @@ class LoanSelect extends React.Component {
   render () {
     return (
 
-      <SelectContainer>
+      <SelectContainer
+      selected={this.props.selected}
+
+      >
         <InsideSelect>
           <Label>
             {this.state.loanType}
@@ -97,7 +100,10 @@ class LoanSelect extends React.Component {
             <svg className="svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M15.961 18.183l7.056-7.147 1.893 1.868-8.951 9.068-8.927-9.069 1.896-1.866z" fill="#869099"></path></svg>
           </Arrow>
         </InsideSelect>
-        <Select value={this.state.loanType} onChange={this.handleSelect}>
+        <Select
+        onClick={()=>this.props.updateSelected('loan')}
+        value={this.state.loanType}
+        onChange={this.handleSelect}>
           <Option value="30-year-fixed">30-year fixed</Option>
           <Option value="20-year-fixed">20-year fixed</Option>
           <Option value="15-year-fixed">15-year fixed</Option>

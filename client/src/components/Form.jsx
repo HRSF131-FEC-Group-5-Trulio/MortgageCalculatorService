@@ -57,7 +57,11 @@ const Form = (props) => {
       <Container2>
         <Container3>
           <Container4>
-              <HomePrice price={props.price} priceChange={props.priceChange}/>
+              <HomePrice
+              price={props.price}
+              priceChange={props.priceChange}
+              updateSelected={props.updateSelected}
+              selected={props.selected}/>
             </Container4>
           <Slider max={1300000} value={props.price} change={props.priceChange} step={10} />
         </Container3>
@@ -69,6 +73,8 @@ const Form = (props) => {
               downPercent={props.downPercent}
               downChange={props.downChange}
               downPercentChange={props.downPercentChange}
+              updateSelected={props.updateSelected}
+              selected={props.selected}
               />
             </Container4>
           <Slider max={30} value={props.downPercent} change={props.downPercentChange} step={1}/>
@@ -78,6 +84,8 @@ const Form = (props) => {
               <InterestRate
                 rate={props.rate}
                 interestChange={props.interestChange}
+                updateSelected={props.updateSelected}
+                selected={props.selected}
               />
             </Container4>
           <Slider max={6.5} value={props.rate} change={props.interestChange} step={.01}/>
@@ -86,7 +94,11 @@ const Form = (props) => {
           <Container4>
               <LoanType/>
             </Container4>
-          <LoanSelect loanChange={props.loanChange}/>
+          <LoanSelect
+          loanChange={props.loanChange}
+          updateSelected={props.updateSelected}
+          selected={props.selected}
+          />
           </Container3>
           </Container2>
         </Container1>

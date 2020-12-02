@@ -82,18 +82,20 @@ var App = /*#__PURE__*/function (_React$Component) {
       isLoading: true,
       price: 900000,
       rate: 2.83,
-      down: 300000,
+      down: 30000,
       downPercent: 20,
       loanType: '30-year fixed',
       monthly: [{
         monthly_payment: 1
-      }]
+      }],
+      selected: null
     };
     _this.priceChange = _this.priceChange.bind(_assertThisInitialized(_this));
     _this.interestChange = _this.interestChange.bind(_assertThisInitialized(_this));
     _this.downChange = _this.downChange.bind(_assertThisInitialized(_this));
     _this.downPercentChange = _this.downPercentChange.bind(_assertThisInitialized(_this));
     _this.loanChange = _this.loanChange.bind(_assertThisInitialized(_this));
+    _this.updateSelected = _this.updateSelected.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -104,7 +106,8 @@ var App = /*#__PURE__*/function (_React$Component) {
 
       (0, _axios["default"])({
         method: 'get',
-        url: 'http://18.191.145.212:3004/api/MortgageCalculator/settings',
+        url: "http://localhost:3004/api/MortgageCalculator/settings",
+        // url: 'http://18.191.145.212:3004/api/MortgageCalculator/settings',
         responseType: 'json'
       }).then(function (response) {
         var dataObj = response.data;
@@ -119,8 +122,8 @@ var App = /*#__PURE__*/function (_React$Component) {
         // console.log(this.props.id);
         (0, _axios["default"])({
           method: 'get',
-          url: "http://18.191.145.212:3004/api/MortgageCalculator/".concat(_this2.props.id),
-          // refactor to /api/MortgageCalculator/:id/<whatever>
+          url: "http://localhost:3004/api/MortgageCalculator/".concat(_this2.props.id),
+          // url: `http://18.191.145.212:3004/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
           responseType: 'json'
         }).then(function (response) {
           var price = {
@@ -145,7 +148,14 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "priceChange",
     value: function priceChange(event) {
-      var newPrice = event.target.value;
+      var newPrice;
+
+      if (event.target !== undefined) {
+        newPrice = event.target.value;
+      } else {
+        newPrice = event;
+      }
+
       var newDown = this.state.downPercent / 100 * newPrice;
       var newState = Object.assign({}, this.state);
       newState.down = newDown;
@@ -169,7 +179,18 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "downChange",
     value: function downChange(event) {
-      var newDown = event.target.value;
+      // let newDown = event.target.value;
+      // if (typeof newDown === 'string') {
+      //   newDown = Number(newDown.slice(1))
+      // }
+      var newDown;
+
+      if (event.target !== undefined) {
+        newDown = event.target.value;
+      } else {
+        newDown = event;
+      }
+
       var newDownPercent = newDown / this.state.price * 100;
       var newState = Object.assign({}, this.state);
       newState.down = newDown;
@@ -232,7 +253,7 @@ var App = /*#__PURE__*/function (_React$Component) {
       var mortgageInsMonthly = 0;
       var homeIns = stateInput.settings["default"][0].home_insurance;
 
-      if (stateInput.loanType !== "VA-30-year fixed" && stateInput.loanType !== "VA-15-year fixed") {
+      if (stateInput.loanType !== "VA-30-year-fixed" && stateInput.loanType !== "VA-15-year-fixed") {
         for (var _i = 0; _i < mortgageIns.length; _i++) {
           if (stateInput.downPercent == mortgageIns[_i].down_payment_percentage) {
             mortgageInsMonthly = mortgageIns[_i].mortgage_insurance * principle;
@@ -250,6 +271,13 @@ var App = /*#__PURE__*/function (_React$Component) {
       }];
     }
   }, {
+    key: "updateSelected",
+    value: function updateSelected(selected) {
+      var newState = Object.assign({}, this.state);
+      newState.selected = selected;
+      this.setState(newState);
+    }
+  }, {
     key: "render",
     value: function render() {
       if (this.state.isLoading) {
@@ -257,7 +285,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           className: "App",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 184,
+            lineNumber: 208,
             columnNumber: 14
           }
         }, "Loading...");
@@ -266,14 +294,14 @@ var App = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/_react["default"].createElement(Container, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 190,
+          lineNumber: 214,
           columnNumber: 7
         }
       }, /*#__PURE__*/_react["default"].createElement(_Header["default"], {
         monthly: this.state.monthly[0].monthly_payment,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 192,
+          lineNumber: 216,
           columnNumber: 9
         }
       }), /*#__PURE__*/_react["default"].createElement(_Form["default"], {
@@ -289,16 +317,18 @@ var App = /*#__PURE__*/function (_React$Component) {
         interestChange: this.interestChange,
         downChange: this.downChange,
         downPercentChange: this.downPercentChange,
+        selected: this.state.selected,
+        updateSelected: this.updateSelected,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 193,
+          lineNumber: 217,
           columnNumber: 9
         }
       }), /*#__PURE__*/_react["default"].createElement(_Breakdown["default"], {
         monthly: this.state.monthly,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 207,
+          lineNumber: 234,
           columnNumber: 9
         }
       }));

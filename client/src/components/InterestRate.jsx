@@ -7,7 +7,7 @@ const InputStyle = styled(NumberFormat)`
 
       width: 75px;
       border-radius: 8px;
-      border: 1px solid rgb(205, 209, 212);
+      border: ${props=> (props.selected === 'interest') ? '3px solid #007882' : '1px solid rgb(205, 209, 212)'};
       padding: 8px;
       font-size: 16px;
       line-height: 1.5;
@@ -46,7 +46,10 @@ const InterestRate = (props) => {
           suffix="%"
           value={props.rate}
           // value={props.rate + "%"}
-          onChange={props.interestChange}/>
+          onChange={props.interestChange}
+          selected={props.selected}
+          onClick={()=>props.updateSelected('interest')}
+          />
         </HomeStyles>
     )
 }

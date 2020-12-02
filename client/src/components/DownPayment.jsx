@@ -8,13 +8,15 @@ import NumberFormat from 'react-number-format';
 
 const InputStyle = styled(CurrencyInput)`
     width: 100px;
-    border-width: 1px 0px 1px 1px;
+    /* border-width: 1px 1px 1px 1px;
     border-top-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-    border-top-color: rgb(205, 209, 212);
-    border-bottom-color: rgb(205, 209, 212);
-    border-left-color: rgb(205, 209, 212);
+    border-right-style: solid; */
+    border: ${props=> (props.selected === 'down') ? '3px solid #007882' : '1px solid rgb(205, 209, 212)'};
+    /* border-top-color: ${props=> (props.selected === 'down') ? ' #007882' : 'rgb(205, 209, 212)'};
+    border-bottom-color: ${props=> (props.selected === 'down') ? ' #007882' : 'rgb(205, 209, 212)'};
+    border-left-color: ${props=> (props.selected === 'down') ? ' #007882' : 'rgb(205, 209, 212)'}; */
     border-image: initial;
     padding: 8px;
     font-size: 16px;
@@ -23,15 +25,16 @@ const InputStyle = styled(CurrencyInput)`
     outline: none;
     transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;
     border-radius: 8px 0px 0px 8px;
-    border-right-style: initial;
-    border-right-color: initial;
+    /* border-right-style: initial; */
+    /* border-right-color: ${props=> (props.selected === 'down') ? ' #007882' : 'rgb(205, 209, 212)'}; */
+    /* border-color: ${props=> (props.selected === 'down') ? ' #007882' : 'rgb(205, 209, 212)'}; */
     margin-left: auto;
 
 
 `;
 
 const InputStyle2 = styled(NumberFormat)`
-    border: 1px solid rgb(205, 209, 212);
+    border: ${props=> (props.selected === 'downPercent') ? '3px solid #007882' : '1px solid rgb(205, 209, 212)'};
     padding: 8px;
     font-size: 16px;
     line-height: 1.5;
@@ -74,11 +77,16 @@ const DownPayment = (props) => {
           type="text"
           prefix="$"
           value={Math.floor(props.down)}
-          onChange={props.downChange}/>
+          selected={props.selected}
+          onChange={props.downChange}
+          onClick={()=>props.updateSelected('down')}
+          />
           {/* <Percent> */}
           <InputStyle2
           type="text"
           value={props.downPercent}
+          selected={props.selected}
+          onClick={()=>props.updateSelected('downPercent')}
           suffix="%"
         //   value={props.downPercent + "%"}
           onChange={props.downPercentChange}/>

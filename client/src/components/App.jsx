@@ -25,22 +25,25 @@ class App extends React.Component {
       isLoading: true,
       price: 900000,
       rate: 2.83,
-      down: 300000,
+      down: 30000,
       downPercent: 20,
       loanType: '30-year fixed',
-      monthly: [{monthly_payment: 1}]
+      monthly: [{monthly_payment: 1}],
+      selected: null,
     }
     this.priceChange = this.priceChange.bind(this);
     this.interestChange = this.interestChange.bind(this);
     this.downChange = this.downChange.bind(this);
     this.downPercentChange = this.downPercentChange.bind(this);
     this.loanChange = this.loanChange.bind(this);
+    this.updateSelected = this.updateSelected.bind(this);
   }
 
   componentDidMount () {
     axios({
       method: 'get',
-      url: 'http://18.191.145.212:3004/api/MortgageCalculator/settings',
+      url: `http://localhost:3004/api/MortgageCalculator/settings`,
+      // url: 'http://18.191.145.212:3004/api/MortgageCalculator/settings',
       responseType: 'json'
     })
     .then((response) => {
@@ -56,7 +59,8 @@ class App extends React.Component {
       // console.log(this.props.id);
       axios({
         method: 'get',
-        url: `http://18.191.145.212:3004/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
+        url: `http://localhost:3004/api/MortgageCalculator/${this.props.id}`,
+        // url: `http://18.191.145.212:3004/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
         responseType: 'json'
       })
       .then((response) => {
@@ -75,7 +79,12 @@ class App extends React.Component {
   }
 
   priceChange (event) {
-    let newPrice = event.target.value;
+    let newPrice;
+    if (event.target !== undefined) {
+      newPrice = event.target.value
+    } else {
+      newPrice = event;
+    }
     let newDown = (this.state.downPercent / 100) * newPrice;
     let newState = Object.assign({}, this.state);
     newState.down = newDown;
@@ -100,7 +109,16 @@ class App extends React.Component {
   }
 
   downChange (event) {
-    let newDown = event.target.value;
+    // let newDown = event.target.value;
+    // if (typeof newDown === 'string') {
+    //   newDown = Number(newDown.slice(1))
+    // }
+    let newDown;
+    if (event.target !== undefined) {
+      newDown = event.target.value
+    } else {
+      newDown = event;
+    }
     let newDownPercent = (newDown / this.state.price) * 100;
     let newState = Object.assign({}, this.state);
     newState.down = newDown;
@@ -159,7 +177,7 @@ class App extends React.Component {
     let principleAndInterest = (principle - stateInput.down) * (interestMonthly / (1 - Math.pow((1 + interestMonthly), (-months))));
     let mortgageInsMonthly = 0;
     let homeIns = stateInput.settings.default[0].home_insurance;
-    if (stateInput.loanType !== "VA-30-year fixed" && stateInput.loanType !== "VA-15-year fixed") {
+    if (stateInput.loanType !== "VA-30-year-fixed" && stateInput.loanType !== "VA-15-year-fixed") {
       for (let i = 0; i < mortgageIns.length; i++) {
         if (stateInput.downPercent == mortgageIns[i].down_payment_percentage) {
           mortgageInsMonthly = (mortgageIns[i].mortgage_insurance * principle);
@@ -176,6 +194,12 @@ class App extends React.Component {
       home_ins: homeIns,
       mortgage_insurance: mortgageInsMonthly
     }]
+  }
+
+  updateSelected (selected) {
+    let newState = Object.assign({}, this.state);
+    newState.selected = selected;
+    this.setState(newState);
   }
 
   render () {
@@ -203,7 +227,10 @@ class App extends React.Component {
           interestChange={this.interestChange}
           downChange={this.downChange}
           downPercentChange={this.downPercentChange}
+          selected={this.state.selected}
+          updateSelected={this.updateSelected}
         />
+        {/* {console.log(this.state.selected)} */}
         <Breakdown monthly={this.state.monthly}/>
         {/* {console.log(this.state.settings)} */}
 

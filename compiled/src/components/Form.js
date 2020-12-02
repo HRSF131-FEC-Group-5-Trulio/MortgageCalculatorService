@@ -121,6 +121,8 @@ var Form = function Form(props) {
   }, /*#__PURE__*/_react["default"].createElement(_HomePrice["default"], {
     price: props.price,
     priceChange: props.priceChange,
+    updateSelected: props.updateSelected,
+    selected: props.selected,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 60,
@@ -133,19 +135,19 @@ var Form = function Form(props) {
     step: 10,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62,
+      lineNumber: 66,
       columnNumber: 11
     }
   })), /*#__PURE__*/_react["default"].createElement(Container3, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 64,
+      lineNumber: 68,
       columnNumber: 9
     }
   }, /*#__PURE__*/_react["default"].createElement(Container4, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65,
+      lineNumber: 69,
       columnNumber: 11
     }
   }, /*#__PURE__*/_react["default"].createElement(_DownPayment["default"], {
@@ -154,9 +156,11 @@ var Form = function Form(props) {
     downPercent: props.downPercent,
     downChange: props.downChange,
     downPercentChange: props.downPercentChange,
+    updateSelected: props.updateSelected,
+    selected: props.selected,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66,
+      lineNumber: 70,
       columnNumber: 15
     }
   })), /*#__PURE__*/_react["default"].createElement(_Slider["default"], {
@@ -166,27 +170,29 @@ var Form = function Form(props) {
     step: 1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74,
+      lineNumber: 80,
       columnNumber: 11
     }
   })), /*#__PURE__*/_react["default"].createElement(Container3, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76,
+      lineNumber: 82,
       columnNumber: 11
     }
   }, /*#__PURE__*/_react["default"].createElement(Container4, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77,
+      lineNumber: 83,
       columnNumber: 11
     }
   }, /*#__PURE__*/_react["default"].createElement(_InterestRate["default"], {
     rate: props.rate,
     interestChange: props.interestChange,
+    updateSelected: props.updateSelected,
+    selected: props.selected,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78,
+      lineNumber: 84,
       columnNumber: 15
     }
   })), /*#__PURE__*/_react["default"].createElement(_Slider["default"], {
@@ -196,32 +202,34 @@ var Form = function Form(props) {
     step: .01,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 83,
+      lineNumber: 91,
       columnNumber: 11
     }
   })), /*#__PURE__*/_react["default"].createElement(Container3, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 85,
+      lineNumber: 93,
       columnNumber: 11
     }
   }, /*#__PURE__*/_react["default"].createElement(Container4, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86,
+      lineNumber: 94,
       columnNumber: 11
     }
   }, /*#__PURE__*/_react["default"].createElement(_LoanType["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87,
+      lineNumber: 95,
       columnNumber: 15
     }
   })), /*#__PURE__*/_react["default"].createElement(_LoanSelect["default"], {
     loanChange: props.loanChange,
+    updateSelected: props.updateSelected,
+    selected: props.selected,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 89,
+      lineNumber: 97,
       columnNumber: 11
     }
   })))));

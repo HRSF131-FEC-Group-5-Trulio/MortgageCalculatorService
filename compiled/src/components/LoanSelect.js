@@ -86,7 +86,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    width: 100%;\n    display: inline-block;\n    -webkit-box-align: center;\n    align-items: center;\n    position: relative;\n    font-weight: bold;\n    border: 1px solid rgb(205, 209, 212);\n    border-radius: 8px;\n    background-color: rgb(255, 255, 255);\n    padding: 8px;\n    outline: none;\n    transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n"]);
+  var data = _taggedTemplateLiteral(["\n    width: 100%;\n    display: inline-block;\n    -webkit-box-align: center;\n    align-items: center;\n    position: relative;\n    font-weight: bold;\n    border: ", ";\n    border-radius: 8px;\n    background-color: rgb(255, 255, 255);\n    padding: 8px;\n    outline: none;\n    transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -97,7 +97,9 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var SelectContainer = _styledComponents["default"].div(_templateObject());
+var SelectContainer = _styledComponents["default"].div(_templateObject(), function (props) {
+  return props.selected === 'loan' ? '3px solid #007882' : '1px solid rgb(205, 209, 212)';
+});
 
 var InsideSelect = _styledComponents["default"].div(_templateObject2());
 
@@ -139,7 +141,10 @@ var LoanSelect = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return /*#__PURE__*/_react["default"].createElement(SelectContainer, {
+        selected: this.props.selected,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 91,
@@ -148,19 +153,19 @@ var LoanSelect = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react["default"].createElement(InsideSelect, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92,
+          lineNumber: 95,
           columnNumber: 9
         }
       }, /*#__PURE__*/_react["default"].createElement(Label, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93,
+          lineNumber: 96,
           columnNumber: 11
         }
       }, this.state.loanType), /*#__PURE__*/_react["default"].createElement(Arrow, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 96,
+          lineNumber: 99,
           columnNumber: 11
         }
       }, /*#__PURE__*/_react["default"].createElement("svg", {
@@ -169,7 +174,7 @@ var LoanSelect = /*#__PURE__*/function (_React$Component) {
         xmlns: "http://www.w3.org/2000/svg",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97,
+          lineNumber: 100,
           columnNumber: 13
         }
       }, /*#__PURE__*/_react["default"].createElement("path", {
@@ -177,71 +182,74 @@ var LoanSelect = /*#__PURE__*/function (_React$Component) {
         fill: "#869099",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97,
+          lineNumber: 100,
           columnNumber: 89
         }
       })))), /*#__PURE__*/_react["default"].createElement(Select, {
+        onClick: function onClick() {
+          return _this2.props.updateSelected('loan');
+        },
         value: this.state.loanType,
         onChange: this.handleSelect,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 100,
+          lineNumber: 103,
           columnNumber: 9
         }
       }, /*#__PURE__*/_react["default"].createElement(Option, {
         value: "30-year-fixed",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 101,
+          lineNumber: 107,
           columnNumber: 11
         }
       }, "30-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
         value: "20-year-fixed",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 102,
+          lineNumber: 108,
           columnNumber: 11
         }
       }, "20-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
         value: "15-year-fixed",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 103,
+          lineNumber: 109,
           columnNumber: 11
         }
       }, "15-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
         value: "10-year-fixed",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 104,
+          lineNumber: 110,
           columnNumber: 11
         }
       }, "10-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
         value: "FHA-30-year-fixed",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 105,
+          lineNumber: 111,
           columnNumber: 11
         }
       }, "FHA 30-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
         value: "FHA-15-year-fixed",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 106,
+          lineNumber: 112,
           columnNumber: 11
         }
       }, "FHA 15-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
         value: "VA-30-year-fixed",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107,
+          lineNumber: 113,
           columnNumber: 11
         }
       }, "VA 30-year fixed"), /*#__PURE__*/_react["default"].createElement(Option, {
         value: "VA-15-year-fixed",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108,
+          lineNumber: 114,
           columnNumber: 11
         }
       }, "VA 15-year fixed")));

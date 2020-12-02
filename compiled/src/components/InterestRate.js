@@ -28,7 +28,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\n      width: 75px;\n      border-radius: 8px;\n      border: 1px solid rgb(205, 209, 212);\n      padding: 8px;\n      font-size: 16px;\n      line-height: 1.5;\n      display: inline-block;\n      outline: none;\n      transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n      font-family: TruliaSans, system, -apple-system, Roboto, \"Segoe UI Bold\", Arial, sans-serif;\n      margin-left: auto;\n\n"]);
+  var data = _taggedTemplateLiteral(["\n\n      width: 75px;\n      border-radius: 8px;\n      border: ", ";\n      padding: 8px;\n      font-size: 16px;\n      line-height: 1.5;\n      display: inline-block;\n      outline: none;\n      transition: box-shadow 0.15s ease 0s, border-color 0.15s ease 0s;\n      font-family: TruliaSans, system, -apple-system, Roboto, \"Segoe UI Bold\", Arial, sans-serif;\n      margin-left: auto;\n\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -39,7 +39,9 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var InputStyle = (0, _styledComponents["default"])(_reactNumberFormat["default"])(_templateObject());
+var InputStyle = (0, _styledComponents["default"])(_reactNumberFormat["default"])(_templateObject(), function (props) {
+  return props.selected === 'interest' ? '3px solid #007882' : '1px solid rgb(205, 209, 212)';
+});
 
 var HomeStyles = _styledComponents["default"].div(_templateObject2());
 
@@ -56,6 +58,10 @@ var InterestRate = function InterestRate(props) {
     value: props.rate // value={props.rate + "%"}
     ,
     onChange: props.interestChange,
+    selected: props.selected,
+    onClick: function onClick() {
+      return props.updateSelected('interest');
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 44,

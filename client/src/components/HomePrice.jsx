@@ -2,11 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Slider from './Slider.jsx'
 import CurrencyInput from 'react-currency-input-field';
+import NumberFormat from 'react-number-format';
 
 const InputStyle = styled(CurrencyInput)`
       width: 112px;
       border-radius: 8px;
-      border: 1px solid rgb(205, 209, 212);
+      /* border: 1px solid rgb(205, 209, 212); */
+      border: ${props=> (props.selected === 'price') ? '3px solid #007882' : '1px solid rgb(205, 209, 212)'};
       padding: 8px;
       font-size: 16px;
       line-height: 1.5;
@@ -45,7 +47,10 @@ const HomePrice = (props) => {
           type="text"
           prefix="$"
           value={props.price}
-          onChange={props.priceChange}/>
+          onChange={props.priceChange}
+          selected={props.selected}
+          onClick={()=>props.updateSelected('price')}/>
+
         </HomeStyles>
     )
 

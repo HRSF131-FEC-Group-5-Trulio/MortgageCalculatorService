@@ -38,7 +38,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  .slider {\n  background: #f5f6f7;\n  height: 34px;\n  -webkit-appearance: none;\n  margin: 10px 0;\n  width: 100%;\n}\n.slider:focus {\n  outline: none;\n}\n.slider::-webkit-slider-runnable-track {\n  width: 100%;\n  height: 4px;\n  cursor: pointer;\n  animate: 0.2s;\n  box-shadow: 1px 1px 1px #FFFFFF;\n  border-radius: 1px;\n  border: 1px solid #FFFFFF;\n  ", "\n}\n.slider::-webkit-slider-thumb {\n\n  border: 3px solid #FFFFFF;\n  height: 19px;\n  width: 19px;\n  border-radius: 15px;\n  background: #007882;\n  cursor: pointer;\n  -webkit-appearance: none;\n  margin-top: -7px;\n}\n.slider:focus::-webkit-slider-runnable-track {\n  ", "\n}\n.slider::-moz-range-track {\n  width: 100%;\n  height: 6px;\n  cursor: pointer;\n  animate: 0.2s;\n  box-shadow: 1px 1px 1px #f5f6f7;\n  background: #007882;\n  border-radius: 1px;\n  border: 1px solid #f5f6f7;\n}\n.slider::-moz-range-thumb {\n  box-shadow: 3px 3px 3px #fff;\n  border: 2px solid #FFFFFF;\n  height: 23px;\n  width: 23px;\n  border-radius: 23px;\n  background: #007882;\n  cursor: pointer;\n}\n.slider::-ms-track {\n  width: 100%;\n  height: 6px;\n  cursor: pointer;\n  animate: 0.2s;\n  background: transparent;\n  border-color: transparent;\n  color: transparent;\n}\n.slider::-ms-fill-lower {\n  background: #007882;\n  border: 1px solid #f5f6f7;\n  border-radius: 2px;\n  box-shadow: 1px 1px 1px #f5f6f7;\n}\n.slider::-ms-fill-upper {\n  background: #007882;\n  border: 1px solid #f5f6f7;\n  border-radius: 2px;\n  box-shadow: 1px 1px 1px #f5f6f7;\n}\n.slider::-ms-thumb {\n  margin-top: 1px;\n  box-shadow: 3px 3px 3px #f5f6f7;\n  border: 2px solid #f5f6f7;\n  height: 23px;\n  width: 23px;\n  border-radius: 23px;\n  background: #007882;\n  cursor: pointer;\n}\n.slider:focus::-ms-fill-lower {\n  background: #007882;\n}\n.slider:focus::-ms-fill-upper {\n  background: #007882;\n}\n\n"]);
+  var data = _taggedTemplateLiteral(["\n  .slider {\n  background: #f5f6f7;\n  height: 34px;\n  -webkit-appearance: none;\n  margin: 10px 0;\n  width: 100%;\n}\n.slider:focus {\n  outline: none;\n}\n.slider::-webkit-slider-runnable-track {\n  width: 100%;\n  height: 4.5px;\n  cursor: pointer;\n  animate: 0.2s;\n  box-shadow: 1px 1px 1px #FFFFFF;\n  border-radius: 1px;\n  border: 1px solid #FFFFFF;\n  ", "\n}\n.slider::-webkit-slider-thumb {\n\n  border: 4px solid #FFFFFF;\n  height: 19px;\n  width: 19px;\n  border-radius: 15px;\n  background: #007882;\n  cursor: pointer;\n  -webkit-appearance: none;\n  margin-top: -7px;\n}\n.slider:focus::-webkit-slider-runnable-track {\n  ", "\n}\n.slider::-moz-range-track {\n  width: 100%;\n  height: 6px;\n  cursor: pointer;\n  animate: 0.2s;\n  box-shadow: 1px 1px 1px #f5f6f7;\n  background: #007882;\n  border-radius: 1px;\n  border: 1px solid #f5f6f7;\n}\n.slider::-moz-range-thumb {\n  box-shadow: 3px 3px 3px #fff;\n  border: 2px solid #FFFFFF;\n  height: 23px;\n  width: 23px;\n  border-radius: 23px;\n  background: #007882;\n  cursor: pointer;\n}\n.slider::-ms-track {\n  width: 100%;\n  height: 6px;\n  cursor: pointer;\n  animate: 0.2s;\n  background: transparent;\n  border-color: transparent;\n  color: transparent;\n}\n.slider::-ms-fill-lower {\n  background: #007882;\n  border: 1px solid #f5f6f7;\n  border-radius: 2px;\n  box-shadow: 1px 1px 1px #f5f6f7;\n}\n.slider::-ms-fill-upper {\n  background: #007882;\n  border: 1px solid #f5f6f7;\n  border-radius: 2px;\n  box-shadow: 1px 1px 1px #f5f6f7;\n}\n.slider::-ms-thumb {\n  margin-top: 1px;\n  box-shadow: 3px 3px 3px #f5f6f7;\n  border: 2px solid #f5f6f7;\n  height: 23px;\n  width: 23px;\n  border-radius: 23px;\n  background: #007882;\n  cursor: pointer;\n}\n.slider:focus::-ms-fill-lower {\n  background: #007882;\n}\n.slider:focus::-ms-fill-upper {\n  background: #007882;\n}\n\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -96,7 +96,7 @@ var Slider = /*#__PURE__*/function (_React$Component) {
         sliderMax = TruliaMax;
 
         if (this.state.value > TruliaMax) {
-          sliderMax += TruliaMax + 5000000;
+          sliderMax = TruliaMax + 5000000;
         }
       }
 
@@ -110,7 +110,7 @@ var Slider = /*#__PURE__*/function (_React$Component) {
           columnNumber: 7
         }
       }, /*#__PURE__*/_react["default"].createElement(Styles, {
-        left: this.state.value / this.props.max * 100,
+        left: this.state.value / sliderMax * 100,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 128,
@@ -126,7 +126,7 @@ var Slider = /*#__PURE__*/function (_React$Component) {
         step: this.props.step,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 130,
+          lineNumber: 129,
           columnNumber: 9
         }
       })));

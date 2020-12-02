@@ -18,7 +18,7 @@ const Styles = styled.div`
 }
 .slider::-webkit-slider-runnable-track {
   width: 100%;
-  height: 4px;
+  height: 4.5px;
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 1px 1px 1px #FFFFFF;
@@ -28,7 +28,7 @@ const Styles = styled.div`
 }
 .slider::-webkit-slider-thumb {
 
-  border: 3px solid #FFFFFF;
+  border: 4px solid #FFFFFF;
   height: 19px;
   width: 19px;
   border-radius: 15px;
@@ -114,19 +114,18 @@ class Slider extends React.Component  {
   }
 
   render () {
-    let TruliaMax = 1300000;
-    let sliderMax = this.props.max;
+    var TruliaMax = 1300000;
+    var sliderMax = this.props.max;
     if (this.state.value > 100) {
       sliderMax = TruliaMax;
       if (this.state.value > TruliaMax) {
-        sliderMax += TruliaMax + 5000000;
+        sliderMax = TruliaMax + 5000000;
       }
     }
 
     return (
       <div style={{position: 'relative'}}>
-      <Styles left={(this.state.value / this.props.max) * 100 }>
-
+      <Styles left={(this.state.value / sliderMax) * 100 }>
         <input type="range" min={0} value={this.state.value} max={sliderMax}  className="slider" onChange={this.handleOnChange} step={this.props.step}/>
       </Styles>
       </div>
