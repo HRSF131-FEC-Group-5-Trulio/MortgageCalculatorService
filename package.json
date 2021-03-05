@@ -9,12 +9,14 @@
   },
   "scripts": {
     "seed": "node seed.js",
-    "start": "webpack --mode=development --watch",
+    "start": "node server/server.js",
+    "start-dev": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
     "dev": "webpack-dev-server",
     "serve": "webpack serve",
     "babel": "babel ./client --out-dir compiled --watch",
-    "start-server": "nodemon server/server.js"
+    "start-server": "nodemon server/server.js",
+    "server": "node server/server.js"
   },
   "dependencies": {
     "@babel/cli": "^7.12.1",
@@ -39,7 +41,6 @@
     "babel-loader": "^8.2.1",
     "babel-plugin-styled-components": "^1.12.0",
     "css-loader": "^5.0.1",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",

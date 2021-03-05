@@ -40,15 +40,18 @@ class App extends React.Component {
   }
 
   componentDidMount () {
+
+    const id = window.location.pathname.split('/')[2];
+
     axios({
       method: 'get',
+      url: `/api/MortgageCalculator/settings`,
       // url: `http://localhost:3004/api/MortgageCalculator/settings`,
-      url: 'http://18.191.145.212:3004/api/MortgageCalculator/settings',
+      // url: 'http://18.191.145.212:3004/api/MortgageCalculator/settings',
       responseType: 'json'
     })
     .then((response) => {
       let dataObj = response.data;
-      console.log(dataObj);
       let newState = Object.assign({}, newState);
       newState.settings = dataObj;
       newState.isLoading = false;
@@ -59,13 +62,15 @@ class App extends React.Component {
       // console.log(this.props.id);
       axios({
         method: 'get',
-        // url: `http://localhost:3004/api/MortgageCalculator/${this.props.id}`,
-        url: `http://18.191.145.212:3004/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
+        url: `/api/MortgageCalculator/listings/${id}`,
+        // url: `http://localhost:3004/api/MortgageCalculator/listings/${id}`,
+        // url: `http://18.191.145.212:3004/api/MortgageCalculator/${this.props.id}`, // refactor to /api/MortgageCalculator/:id/<whatever>
         responseType: 'json'
       })
       .then((response) => {
         let price = {target: {}};
         price.target.value = response.data[0].price;
+        // console.log(price);
         this.priceChange(price);
       })
     })

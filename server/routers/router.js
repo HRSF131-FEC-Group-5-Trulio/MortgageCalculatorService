@@ -11,7 +11,7 @@ router.route('/settings')
     })
   });
 
-  router.route('/:listing_id')
+  router.route('/listings/:listing_id')
     .get((req, res) => {
       controller.getListing(req.params.listing_id, (err, data) => {
         if (err) {
